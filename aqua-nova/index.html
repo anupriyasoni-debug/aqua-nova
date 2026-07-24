@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REEF - Protect Our Ocean</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">🌊 REEF</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#volunteer">Volunteer</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+
+
+ <!-- HERO SECTION -->
+  <section id="home" class="hero">
+  <p class="hero-eyebrow">Every breath you take, the ocean gave you</p>
+  <h1>The Reef Kept Us Alive. <span class="highlight">Now It Needs You.</span></h1>
+  <p>Coral reefs and marine life are dying. You can help save them.</p>
+  <div class="hero-buttons">
+    <a href="#volunteer" class="btn btn-primary">Volunteer With Us</a>
+    <a href="#support" class="btn btn-secondary">Support Marine Life</a>
+  </div>
+</section>
+
+  <!-- VOICES OF THE OCEAN -->
+  <section class="voices-section">
+    <h2 class="voices-title">Voices of the Ocean</h2>
+
+    <div class="voice-line reveal">
+      <span class="voice-icon">🪸</span>
+      <p>"I built this reef for 300 years. Plastic and heat are killing me."</p>
+    </div>
+
+    <div class="voice-line reveal">
+      <span class="voice-icon">🐢</span>
+      <p>"I ate plastic thinking it was food. It hurt me."</p>
+    </div>
+
+    <div class="voice-line reveal">
+      <span class="voice-icon">🐟</span>
+      <p>"My home is disappearing. Where will I go?"</p>
+    </div>
+
+    <div class="voice-line reveal">
+      <span class="voice-icon">🌊</span>
+      <p>"I give you food, air, and life. Please don't let me die."</p>
+    </div>
+
+    <div class="voice-line reveal voice-final">
+      <p>You can still help. Scroll on.</p>
+    </div>
+
+  </section>
+
+  <!-- WAVE DIVIDER -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path d="M0,50 C360,100 1080,0 1440,50 L1440,100 L0,100 Z" fill="#012a4a"></path>
+    </svg>
+  </div>
+
+ 
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about">
+    <div class="about-content">
+      <h2>Why It Matters</h2>
+      <p>Coral reefs support nearly 25% of all marine life, but more than half of the world's reefs have already died or been severely damaged. Pollution, plastic waste, and rising ocean temperatures are destroying homes for fish, turtles, and coral together.</p>
+      <p>REEF exists to turn awareness into action — connecting people directly to the reefs and marine life they can help protect.</p>
+    </div>
+
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-icon">🪸</div>
+        <div class="stat-number">50%</div>
+        <div class="stat-label">of coral reefs already lost worldwide</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">🐠</div>
+        <div class="stat-number">25%</div>
+        <div class="stat-label">of marine species depend on reefs</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">🌊</div>
+        <div class="stat-number">1M+</div>
+        <div class="stat-label">tons of plastic enter oceans yearly</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">⏳</div>
+        <div class="stat-number">2050</div>
+        <div class="stat-label">year reefs could disappear if trends continue</div>
+      </div>
+    </div>
+
+    <div class="mission-grid">
+      <div class="mission-item">
+        <h3>🎯 Our Mission</h3>
+        <p>Protect coral reefs and marine ecosystems through community action, education, and direct conservation support.</p>
+      </div>
+      <div class="mission-item">
+        <h3>👁️ Our Vision</h3>
+        <p>A future where thriving coral reefs support both marine life and coastal communities for generations to come.</p>
+      </div>
+      <div class="mission-item">
+        <h3>🤝 How We Work</h3>
+        <p>By connecting volunteers, donors, and scientists to real reef locations that need protection right now.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BEFORE AFTER SLIDER -->
+   
+
+  <section class="slider-section">
+    <h2>See the Difference</h2>
+    <p>Drag the slider to see how coral reefs change</p>
+
+    <div class="comparison-container" id="comparisonContainer">
+      <img src="healthy-reef.jpg" class="img-after">
+      <div class="img-before-wrapper" id="imgBeforeWrapper">
+        <img src="damaged-reef.jpg" class="img-before">
+      </div>
+      <div class="slider-handle" id="sliderHandle">
+        <div class="slider-line"></div>
+        <div class="slider-circle">⟷</div>
+      </div>
+    </div>
+  </section>
+
+   <!-- PROMISE WALL -->
+  <section id="promise" class="promise-section">
+    <h2>Join the Promise Wall</h2>
+    <p>Share one small action you'll take to protect our oceans</p>
+    <button type="button" id="promiseInfoBtn" class="info-btn">💡 What kind of promises can I make?</button>
+    <div class="promise-input-box">
+      <input type="text" id="promiseInput" placeholder="I will..." maxlength="80">
+      <button id="promiseBtn">Add Promise</button>
+    </div>
+
+    <div class="promise-wall" id="promiseWall">
+      <!-- promises will appear here dynamically -->
+    </div>
+  </section>
+  
+  <!-- PROMISE INFO MODAL -->
+<div class="modal-overlay" id="promiseModalOverlay">
+  <div class="modal-box">
+    <button class="modal-close" id="promiseModalClose">✕</button>
+    <h3>What kind of promises can I make?</h3>
+    <p class="modal-subtitle">Every promise counts — big or small. Here are a few types of promises and what they actually help with:</p>
+
+    <div class="promise-type">
+      <span class="promise-type-icon">🥤</span>
+      <div>
+        <h4>Reduce Plastic Use</h4>
+        <p>e.g. "I will stop using single-use plastic." — Less plastic waste means fewer bottles, bags, and straws ending up in the ocean where turtles and fish mistake them for food.</p>
+      </div>
+    </div>
+
+    <div class="promise-type">
+      <span class="promise-type-icon">🏖️</span>
+      <div>
+        <h4>Cleanup Action</h4>
+        <p>e.g. "I will pick up litter at the beach." — Direct cleanup keeps trash from reaching the water and breaking down into microplastics that harm coral and marine life.</p>
+      </div>
+    </div>
+
+    <div class="promise-type">
+      <span class="promise-type-icon">💧</span>
+      <div>
+        <h4>Water & Energy Saving</h4>
+        <p>e.g. "I will save water and electricity at home." — Lower energy use reduces the emissions that warm the oceans and cause coral bleaching.</p>
+      </div>
+    </div>
+
+    <div class="promise-type">
+      <span class="promise-type-icon">🛍️</span>
+      <div>
+        <h4>Responsible Choices</h4>
+        <p>e.g. "I will choose reef-safe sunscreen." — Everyday product choices can stop harmful chemicals from washing into reef ecosystems.</p>
+      </div>
+    </div>
+
+    <div class="promise-type">
+      <span class="promise-type-icon">📢</span>
+      <div>
+        <h4>Spread Awareness</h4>
+        <p>e.g. "I will tell my friends why reefs matter." — Awareness turns one promise into many, building a bigger movement to protect marine life.</p>
+      </div>
+    </div>
+
+    <p class="modal-footer-note">Type your own promise in any of these categories — or make up your own. Every action, however small, adds up. 🌊</p>
+  </div>
+</div> 
+
+  <!-- VOLUNTEER & SUPPORT SECTION -->
+  <section id="volunteer" class="forms-section">
+    <h2>Get Involved</h2>
+    <p>Choose how you'd like to help protect our oceans</p>
+
+    <div class="forms-container">
+
+      <div class="form-card">
+        <h3>🤝 Volunteer With Us</h3>
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <select>
+          <option value="">How would you like to help?</option>
+          <option value="beach-cleanup">Beach Cleanup</option>
+          <option value="awareness">Spread Awareness</option>
+          <option value="data-collection">Data Collection</option>
+        </select>
+        <button type="button">Join as Volunteer</button>
+      </div>
+
+      <div class="form-card" id="support">
+        <h3>💙 Support Marine Life</h3>
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <select>
+          <option value="">Choose support type</option>
+          <option value="donate">One-Time Donation</option>
+          <option value="monthly">Monthly Support</option>
+          <option value="spread-word">Spread the Word</option>
+        </select>
+        <button type="button">Support Now</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>🌊 REEF — Protecting Coral Reefs & Marine Life</p>
+    <p class="footer-small">Made with care for our oceans</p>
+  </footer>
+  
+  <script src="script.js"></script>
+
+ 
+
+  
+  </body>
+  </html>
