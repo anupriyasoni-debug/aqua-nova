@@ -87,6 +87,33 @@ function addPromiseCard(text) {
   promiseWall.appendChild(card);
 }
 
+// PROMISE INFO MODAL FUNCTIONALITY
+const promiseInfoBtn = document.getElementById('promiseInfoBtn');
+const promiseModalOverlay = document.getElementById('promiseModalOverlay');
+const promiseModalClose = document.getElementById('promiseModalClose');
+
+promiseInfoBtn.addEventListener('click', () => {
+  promiseModalOverlay.classList.add('active');
+});
+
+promiseModalClose.addEventListener('click', () => {
+  promiseModalOverlay.classList.remove('active');
+});
+
+// close modal when clicking outside the box (on the dark overlay)
+promiseModalOverlay.addEventListener('click', (e) => {
+  if (e.target === promiseModalOverlay) {
+    promiseModalOverlay.classList.remove('active');
+  }
+});
+
+// close modal with Escape key
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    promiseModalOverlay.classList.remove('active');
+  }
+});
+
 // VOICES OF THE OCEAN - SCROLL REVEAL
 const revealElements = document.querySelectorAll('.reveal');
 
