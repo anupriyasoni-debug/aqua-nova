@@ -36,4 +36,4 @@ To run this project locally on your machine:
 
 1. **Clone the repository:**
 
-   git clone  
+   git clone https://github.com/anupriyasoni-debug/aqua-nova.git 
