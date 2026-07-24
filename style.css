@@ -750,64 +750,228 @@ body {
   color: var(--text-muted);
   line-height: 1.5;
 }
-
-
 /* ==========================================
-   5. VOICES OF THE OCEAN
+   5. VOICES OF THE OCEAN (CLEAN LAYOUT)
+   ========================================== */
+/* ==========================================
+   5. VOICES OF THE OCEAN (CLEAN LAYOUT - NO AUDIO)
    ========================================== */
 .voices-section {
-  padding: 90px 20px;
-  background-color: var(--navy);
-  text-align: center;
+  padding: 90px 40px;
+  background: linear-gradient(180deg, var(--navy) 0%, var(--deep-blue) 100%);
+}
+
+.voices-container {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .voices-title {
   color: white;
   font-size: 32px;
-  margin-bottom: 60px;
-  opacity: 0.95;
+  margin-bottom: 15px;
 }
 
-.voice-line {
+.voices-subtitle {
+  color: var(--text-muted);
+  font-size: 16px;
   max-width: 600px;
-  margin: 0 auto 70px auto;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  margin: 0 auto 40px auto;
 }
 
-.voice-line.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.voice-icon {
-  font-size: 42px;
-  display: block;
-  margin-bottom: 12px;
-}
-
-.voice-line p {
-  color: white;
-  font-size: 20px;
-  font-style: italic;
-  line-height: 1.6;
-}
-
-.voice-final p {
-  font-size: 24px;
-  font-style: normal;
+.voices-eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 2px;
   font-weight: 700;
   color: var(--mint);
+  margin-bottom: 10px;
 }
 
-.wave-divider svg {
-  width: 100%;
-  height: 50px;
-  display: block;
+/* Hydrophone Hub */
+.hydrophone-card {
+  background: var(--dark-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-cyan);
+  border-radius: 16px;
+  padding: 24px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-md);
+  flex-wrap: wrap;
 }
 
+.hydro-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: white;
+}
 
+.hydro-freq {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* Audio Waveform Animations (Decorative Only) */
+.waveform-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 30px;
+}
+
+.waveform-container .bar {
+  width: 5px;
+  height: 8px;
+  background-color: var(--mint);
+  border-radius: 4px;
+  transition: height 0.2s ease;
+}
+
+.waveform-container.playing .bar {
+  animation: waveAnim 1.2s ease-in-out infinite alternate;
+}
+
+.waveform-container.playing .b1, .waveform-container.playing .b7 { animation-delay: 0.1s; }
+.waveform-container.playing .b2, .waveform-container.playing .b8 { animation-delay: 0.3s; }
+.waveform-container.playing .b3, .waveform-container.playing .b9 { animation-delay: 0.5s; }
+.waveform-container.playing .b4, .waveform-container.playing .b10 { animation-delay: 0.2s; }
+.waveform-container.playing .b5, .waveform-container.playing .b11 { animation-delay: 0.6s; }
+.waveform-container.playing .b6, .waveform-container.playing .b12 { animation-delay: 0.4s; }
+
+@keyframes waveAnim {
+  0% { height: 6px; opacity: 0.4; }
+  100% { height: 28px; opacity: 1; }
+}
+
+/* Category Filter Tabs */
+.voice-filter-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.filter-tab {
+  background: rgba(1, 42, 74, 0.5);
+  border: 1px solid var(--border-cyan);
+  color: var(--text-muted);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-tab:hover,
+.filter-tab.active {
+  background: rgba(93, 217, 193, 0.15);
+  color: var(--mint);
+  border-color: var(--mint);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Voices Grid */
+.voices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+}
+
+.voice-card {
+  background: var(--dark-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-cyan);
+  border-radius: 16px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.voice-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--mint);
+  box-shadow: var(--shadow-sm);
+}
+
+.voice-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.voice-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.v-icon {
+  font-size: 32px;
+}
+
+.voice-card h3 {
+  font-size: 18px;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.v-tag {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 8px;
+  display: inline-block;
+  background: rgba(93, 217, 193, 0.15);
+  color: var(--mint);
+  border: 1px solid var(--border-cyan);
+}
+
+.v-quote {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.v-stat {
+  font-size: 13px;
+  color: var(--coral-pink);
+  background: rgba(255, 107, 107, 0.1);
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 107, 107, 0.2);
+}
+
+.v-stat.status-active {
+  color: var(--mint);
+  background: rgba(93, 217, 193, 0.1);
+  border-color: var(--border-cyan);
+}
+
+.voice-final-call {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.final-quote {
+  font-size: 20px;
+  color: var(--mint);
+  font-weight: 700;
+}
 /* ==========================================
    6. SCROLL-LED STORY: BLEACHING TO RECOVERY (DARK BLUE)
    ========================================== */

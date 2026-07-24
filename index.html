@@ -217,153 +217,146 @@
   </section>
 
   <!-- ========================================== -->
-  <!-- 5. VOICES OF THE OCEAN (ENHANCED & EXTENDED) -->
+  <!-- 5. VOICES OF THE OCEAN (ENHANCED & CLEAN) -->
+  <!-- ========================================== -->
+  <!-- ========================================== -->
+  <!-- 5. VOICES OF THE OCEAN (NO AUDIO VERSION) -->
   <!-- ========================================== -->
   <section id="voices" class="voices-section">
-    <div class="section-header text-center">
-      <div class="voices-eyebrow">OCEAN HYDROPHONE BIO-ACOUSTICS</div>
-      <h2 class="voices-title">Voices of the Ocean</h2>
-      <p class="voices-subtitle">Listen to hydrophone bio-acoustic signals & testimony from marine life fighting for survival</p>
-    </div>
-
-    <!-- Hydrophone Audio Controller Card -->
-    <div class="hydrophone-card reveal">
-      <div class="hydro-info">
-        <div class="hydro-status">
-          <span class="pulse-dot"></span>
-          <span>HYDROPHONE ARRAY #3: <strong>KEY LARGO REEF SANCTUARY</strong></span>
-        </div>
-        <div class="hydro-freq">Bio-Acoustic crackle frequency: <strong>12.4 kHz</strong> (Healthy Reef Bio-Sound Index)</div>
+    <div class="voices-container">
+      <div class="section-header text-center">
+        <div class="voices-eyebrow">OCEAN HYDROPHONE BIO-ACOUSTICS</div>
+        <h2 class="voices-title">Voices of the Ocean</h2>
+        <p class="voices-subtitle">Read telemetry data & testimony from marine life fighting for survival</p>
       </div>
 
-      <!-- Animated Sound Waveform Bars -->
-      <div class="waveform-container" id="waveformVisualizer">
-        <span class="bar b1"></span>
-        <span class="bar b2"></span>
-        <span class="bar b3"></span>
-        <span class="bar b4"></span>
-        <span class="bar b5"></span>
-        <span class="bar b6"></span>
-        <span class="bar b7"></span>
-        <span class="bar b8"></span>
-        <span class="bar b9"></span>
-        <span class="bar b10"></span>
-        <span class="bar b11"></span>
-        <span class="bar b12"></span>
-      </div>
-
-      <button type="button" class="btn-audio-toggle" id="btnToggleAudio">
-        <span id="audioBtnIcon">🔊</span> <span id="audioBtnText">Play Bio-Acoustic Soundscape</span>
-      </button>
-    </div>
-
-    <!-- Category Filter Tabs -->
-    <div class="voice-filter-tabs">
-      <button type="button" class="filter-tab active" data-filter="all">All Voices</button>
-      <button type="button" class="filter-tab" data-filter="coral">🪸 Coral Reef</button>
-      <button type="button" class="filter-tab" data-filter="turtle">🐢 Sea Turtles</button>
-      <button type="button" class="filter-tab" data-filter="mammal">🐋 Whales & Mammals</button>
-      <button type="button" class="filter-tab" data-filter="shark">🦈 Predators</button>
-      <button type="button" class="filter-tab" data-filter="fish">🐠 Reef Fish</button>
-    </div>
-
-    <!-- Voices Grid Stream -->
-    <div class="voices-grid">
-      <!-- Coral Card -->
-      <div class="voice-card reveal" data-category="coral">
-        <div class="voice-card-header">
-          <span class="v-icon">🪸</span>
-          <div>
-            <h3>300-Year Ancient Coral Colony</h3>
-            <span class="v-tag coral-tag">Habitat Builder</span>
+      <!-- Hydrophone Monitoring Card (Visual Only) -->
+      <div class="hydrophone-card reveal">
+        <div class="hydro-info">
+          <div class="hydro-status">
+            <span class="pulse-dot"></span>
+            <span>HYDROPHONE ARRAY #3: <strong>KEY LARGO REEF SANCTUARY</strong></span>
           </div>
-          <button type="button" class="btn-listen-voice" data-sound="coral" title="Listen to Coral Bio-Acoustics">🔊 Listen</button>
+          <div class="hydro-freq">Bio-Acoustic crackle frequency: <strong>12.4 kHz</strong> (Healthy Reef Bio-Sound Index)</div>
         </div>
-        <p class="v-quote">"I built this reef skeleton for 300 years. Plastic waste and rising ocean temperatures are bleaching my tissue white in just 30 days."</p>
-        <div class="v-stat">⚠️ Threat Index: <strong>Extreme (Heat & Acidification)</strong></div>
+
+        <!-- Animated Sound Waveform Bars (Decorative) -->
+        <div class="waveform-container playing" id="waveformVisualizer">
+          <span class="bar b1"></span><span class="bar b2"></span><span class="bar b3"></span>
+          <span class="bar b4"></span><span class="bar b5"></span><span class="bar b6"></span>
+          <span class="bar b7"></span><span class="bar b8"></span><span class="bar b9"></span>
+          <span class="bar b10"></span><span class="bar b11"></span><span class="bar b12"></span>
+        </div>
       </div>
 
-      <!-- Sea Turtle Card -->
-      <div class="voice-card reveal" data-category="turtle">
-        <div class="voice-card-header">
-          <span class="v-icon">🐢</span>
-          <div>
-            <h3>Loggerhead Sea Turtle</h3>
-            <span class="v-tag turtle-tag">Ocean Navigator</span>
+      <!-- Category Filter Tabs -->
+      <div class="voice-filter-tabs">
+        <button type="button" class="filter-tab active" data-filter="all">All Voices</button>
+        <button type="button" class="filter-tab" data-filter="coral">🪸 Coral Reef</button>
+        <button type="button" class="filter-tab" data-filter="turtle">🐢 Sea Turtles</button>
+        <button type="button" class="filter-tab" data-filter="mammal">🐋 Whales & Mammals</button>
+        <button type="button" class="filter-tab" data-filter="shark">🦈 Predators</button>
+        <button type="button" class="filter-tab" data-filter="fish">🐠 Reef Fish</button>
+      </div>
+
+      <!-- Voices Grid Stream -->
+      <div class="voices-grid">
+        <!-- Coral Card -->
+        <div class="voice-card reveal" data-category="coral">
+          <div class="voice-card-header">
+            <div class="voice-title-wrapper">
+              <span class="v-icon">🪸</span>
+              <div>
+                <h3>Ancient Coral Colony</h3>
+                <span class="v-tag coral-tag">Habitat Builder</span>
+              </div>
+            </div>
           </div>
-          <button type="button" class="btn-listen-voice" data-sound="turtle" title="Listen to Turtle Acoustic Signals">🔊 Listen</button>
+          <p class="v-quote">"I built this reef skeleton for 300 years. Plastic waste and rising ocean temperatures are bleaching my tissue white in just 30 days."</p>
+          <div class="v-stat">⚠️ Threat Index: <strong>Extreme (Heat)</strong></div>
         </div>
-        <p class="v-quote">"I ate floating plastic bags mistaking them for jellyfish. Microplastics choke our digestive tracks and pollute our nesting beaches."</p>
-        <div class="v-stat">⚠️ Threat Index: <strong>High (Plastic Ingestion & Net Entanglement)</strong></div>
-      </div>
 
-      <!-- Blue Whale Card -->
-      <div class="voice-card reveal" data-category="mammal">
-        <div class="voice-card-header">
-          <span class="v-icon">🐋</span>
-          <div>
-            <h3>Blue Whale</h3>
-            <span class="v-tag mammal-tag">Ocean Giant</span>
+        <!-- Sea Turtle Card -->
+        <div class="voice-card reveal" data-category="turtle">
+          <div class="voice-card-header">
+             <div class="voice-title-wrapper">
+              <span class="v-icon">🐢</span>
+              <div>
+                <h3>Loggerhead Turtle</h3>
+                <span class="v-tag turtle-tag">Ocean Navigator</span>
+              </div>
+            </div>
           </div>
-          <button type="button" class="btn-listen-voice" data-sound="whale" title="Listen to Whale Song Frequency">🔊 Listen</button>
+          <p class="v-quote">"I ate floating plastic bags mistaking them for jellyfish. Microplastics choke our digestive tracks and pollute our nesting beaches."</p>
+          <div class="v-stat">⚠️ Threat Index: <strong>High (Plastics)</strong></div>
         </div>
-        <p class="v-quote">"My low-frequency songs used to travel thousands of miles across calm seas. Heavy cargo ship noise pollution now drowns out our mating calls."</p>
-        <div class="v-stat">⚠️ Threat Index: <strong>Severe (Ship Strikes & Acoustic Noise)</strong></div>
-      </div>
 
-      <!-- Reef Shark Card -->
-      <div class="voice-card reveal" data-category="shark">
-        <div class="voice-card-header">
-          <span class="v-icon">🦈</span>
-          <div>
-            <h3>Apex Reef Shark</h3>
-            <span class="v-tag shark-tag">Ecosystem Balance</span>
+        <!-- Blue Whale Card -->
+        <div class="voice-card reveal" data-category="mammal">
+          <div class="voice-card-header">
+            <div class="voice-title-wrapper">
+              <span class="v-icon">🐋</span>
+              <div>
+                <h3>Blue Whale</h3>
+                <span class="v-tag mammal-tag">Ocean Giant</span>
+              </div>
+            </div>
           </div>
-          <button type="button" class="btn-listen-voice" data-sound="shark" title="Listen to Shark Telemetry Signals">🔊 Listen</button>
+          <p class="v-quote">"My low-frequency songs used to travel thousands of miles. Heavy cargo ship noise pollution now drowns out our mating calls."</p>
+          <div class="v-stat">⚠️ Threat Index: <strong>Severe (Noise)</strong></div>
         </div>
-        <p class="v-quote">"Apex predators like me keep reef fish populations healthy. Overfishing and finning remove us, causing the entire food web to collapse."</p>
-        <div class="v-stat">⚠️ Threat Index: <strong>High (Overfishing & Bycatch)</strong></div>
-      </div>
 
-      <!-- Reef Fish Card -->
-      <div class="voice-card reveal" data-category="fish">
-        <div class="voice-card-header">
-          <span class="v-icon">🐠</span>
-          <div>
-            <h3>Parrotfish & Reef Dwellers</h3>
-            <span class="v-tag fish-tag">Reef Cleaners</span>
+        <!-- Reef Shark Card -->
+        <div class="voice-card reveal" data-category="shark">
+          <div class="voice-card-header">
+            <div class="voice-title-wrapper">
+              <span class="v-icon">🦈</span>
+              <div>
+                <h3>Apex Reef Shark</h3>
+                <span class="v-tag shark-tag">Ecosystem Balance</span>
+              </div>
+            </div>
           </div>
-          <button type="button" class="btn-listen-voice" data-sound="fish" title="Listen to Reef Chatter">🔊 Listen</button>
+          <p class="v-quote">"Apex predators like me keep reef fish populations healthy. Overfishing and finning remove us, causing the food web to collapse."</p>
+          <div class="v-stat">⚠️ Threat Index: <strong>High (Bycatch)</strong></div>
         </div>
-        <p class="v-quote">"We graze on smothering algae to keep corals clean and healthy. When the reef structure dies, our food, shelter, and nurseries disappear."</p>
-        <div class="v-stat">⚠️ Threat Index: <strong>Critical (Habitat Loss)</strong></div>
-      </div>
 
-      <!-- Living Ocean Waters Card -->
-      <div class="voice-card reveal" data-category="coral">
-        <div class="voice-card-header">
-          <span class="v-icon">🌊</span>
-          <div>
-            <h3>Living Ocean Currents</h3>
-            <span class="v-tag ocean-tag">Life Support</span>
+        <!-- Reef Fish Card -->
+        <div class="voice-card reveal" data-category="fish">
+          <div class="voice-card-header">
+            <div class="voice-title-wrapper">
+              <span class="v-icon">🐠</span>
+              <div>
+                <h3>Parrotfish</h3>
+                <span class="v-tag fish-tag">Reef Cleaners</span>
+              </div>
+            </div>
           </div>
-          <button type="button" class="btn-listen-voice" data-sound="ocean" title="Listen to Ocean Waves">🔊 Listen</button>
+          <p class="v-quote">"We graze on smothering algae to keep corals clean. When the reef structure dies, our food, shelter, and nurseries disappear."</p>
+          <div class="v-stat">⚠️ Threat Index: <strong>Critical (Habitat)</strong></div>
         </div>
-        <p class="v-quote">"I generate over 50% of the planet's oxygen and regulate Earth's climate. Protecting marine ecosystems is protecting human survival."</p>
-        <div class="v-stat">💚 Action Status: <strong>Restoration Active</strong></div>
-      </div>
-    </div>
 
-    <div class="voice-final-call reveal">
-      <p class="final-quote">"Their survival is in our hands. Scroll on to take action."</p>
+        <!-- Living Ocean Waters Card -->
+        <div class="voice-card reveal" data-category="coral">
+          <div class="voice-card-header">
+            <div class="voice-title-wrapper">
+              <span class="v-icon">🌊</span>
+              <div>
+                <h3>Living Currents</h3>
+                <span class="v-tag ocean-tag">Life Support</span>
+              </div>
+            </div>
+          </div>
+          <p class="v-quote">"I generate over 50% of the planet's oxygen and regulate Earth's climate. Protecting marine ecosystems is protecting human survival."</p>
+          <div class="v-stat status-active">💚 Action Status: <strong>Active</strong></div>
+        </div>
+      </div>
+      
+      <div class="voice-final-call reveal">
+        <p class="final-quote">"Their survival is in our hands. Scroll on to take action."</p>
+      </div>
     </div>
   </section>
-
-  <div class="wave-divider">
-    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-      <path d="M0,50 C360,100 1080,0 1440,50 L1440,100 L0,100 Z" fill="#012a4a"></path>
-    </svg>
-  </div>
 
   <!-- ========================================== -->
   <!-- 6. SCROLL-LED STORY: BLEACHING TO RECOVERY -->

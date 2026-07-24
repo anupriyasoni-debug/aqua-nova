@@ -5,13 +5,10 @@
 // Global State
 let currentHealthPercent = 72;
 let mousePos = { x: -100, y: -100 };
-let isAudioPlaying = false;
-let audioCtx = null;
-let masterGain = null;
 
 document.addEventListener('DOMContentLoaded', () => {
   initOceanCanvas();
-  initVoicesAudioSystem();
+  initVoiceFilters(); // Audio system removed, replaced with clean filters
   initSlider();
   initPulseSystem();
   initAdoptSystem();
@@ -47,7 +44,7 @@ function initOceanCanvas() {
     }
   });
 
-  // A. Glass Bubbles Class (Distributed across full viewport height)
+  // A. Glass Bubbles Class
   class GlassBubble {
     constructor(x, y, isMouseSpawned = false) {
       this.reset(x, y, isMouseSpawned);
@@ -349,35 +346,25 @@ function initOceanCanvas() {
   function render() {
     ctx.clearRect(0, 0, width, height);
 
-    // Draw Lightning Light Rays
     for (let i = 0; i < lightningRays.length; i++) {
       lightningRays[i].update();
       lightningRays[i].draw();
     }
-
-    // Draw Floating Bubbles
     for (let i = 0; i < bubbles.length; i++) {
       bubbles[i].update();
       bubbles[i].draw();
     }
-
     if (bubbles.length > 70) {
       bubbles.splice(0, bubbles.length - 70);
     }
-
-    // Draw Sea Turtles
     for (let i = 0; i < seaTurtles.length; i++) {
       seaTurtles[i].update();
       seaTurtles[i].draw();
     }
-
-    // Draw Jellyfish Swarm
     for (let i = 0; i < jellyfishSwarm.length; i++) {
       jellyfishSwarm[i].update();
       jellyfishSwarm[i].draw();
     }
-
-    // Draw Schooling Fish
     for (let i = 0; i < fishList.length; i++) {
       fishList[i].update();
       fishList[i].draw();
@@ -390,34 +377,9 @@ function initOceanCanvas() {
 }
 
 /* ------------------------------------------
-   2. VOICES OF THE OCEAN AUDIO & FILTER SYSTEM
+   2. VOICES OF THE OCEAN FILTER SYSTEM
    ------------------------------------------ */
-function initVoicesAudioSystem() {
-  const btnToggle = document.getElementById('btnToggleAudio');
-  const btnText = document.getElementById('audioBtnText');
-  const btnIcon = document.getElementById('audioBtnIcon');
-  const waveform = document.getElementById('waveformVisualizer');
-
-  if (btnToggle) {
-    btnToggle.addEventListener('click', () => {
-      if (!isAudioPlaying) {
-        startOceanSoundscape();
-        isAudioPlaying = true;
-        if (btnText) btnText.textContent = "Pause Bio-Acoustic Soundscape";
-        if (btnIcon) btnIcon.textContent = "⏸️";
-        if (waveform) waveform.classList.add('playing');
-        showToast("🎧 Hydrophone Array Live: Listening to ambient underwater reef soundscape");
-      } else {
-        stopOceanSoundscape();
-        isAudioPlaying = false;
-        if (btnText) btnText.textContent = "Play Bio-Acoustic Soundscape";
-        if (btnIcon) btnIcon.textContent = "🔊";
-        if (waveform) waveform.classList.remove('playing');
-        showToast("⏸️ Hydrophone Soundscape paused");
-      }
-    });
-  }
-
+function initVoiceFilters() {
   const filterTabs = document.querySelectorAll('.filter-tab');
   const voiceCards = document.querySelectorAll('.voice-card');
 
@@ -440,126 +402,6 @@ function initVoicesAudioSystem() {
       });
     });
   });
-
-  const voiceListenBtns = document.querySelectorAll('.btn-listen-voice');
-  voiceListenBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const soundType = btn.getAttribute('data-sound');
-      playSpeciesSound(soundType);
-    });
-  });
-}
-
-function startOceanSoundscape() {
-  try {
-    const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
-    if (!audioCtx) audioCtx = new AudioCtxClass();
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-
-    masterGain = audioCtx.createGain();
-    masterGain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-    masterGain.connect(audioCtx.destination);
-
-    const bufferSize = audioCtx.sampleRate * 2;
-    const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-    const output = noiseBuffer.getChannelData(0);
-    let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
-
-    for (let i = 0; i < bufferSize; i++) {
-      const white = Math.random() * 2 - 1;
-      b0 = 0.99886 * b0 + white * 0.0555179;
-      b1 = 0.99332 * b1 + white * 0.0750759;
-      b2 = 0.96900 * b2 + white * 0.1538520;
-      b3 = 0.86650 * b3 + white * 0.3104856;
-      b4 = 0.55000 * b4 + white * 0.5329522;
-      b5 = -0.7616 * b5 - white * 0.0168980;
-      output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
-      output[i] *= 0.11;
-      b6 = white * 0.115926;
-    }
-
-    const whiteNoise = audioCtx.createBufferSource();
-    whiteNoise.buffer = noiseBuffer;
-    whiteNoise.loop = true;
-
-    const filter = audioCtx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.setValueAtTime(320, audioCtx.currentTime);
-
-    whiteNoise.connect(filter);
-    filter.connect(masterGain);
-    whiteNoise.start();
-
-  } catch (err) {
-    console.log("Web Audio Context initialized", err);
-  }
-}
-
-function stopOceanSoundscape() {
-  if (masterGain && audioCtx) {
-    masterGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.5);
-  }
-}
-
-function playSpeciesSound(type) {
-  try {
-    const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
-    const ctx = new AudioCtxClass();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-
-    if (type === 'whale') {
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(140, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(60, ctx.currentTime + 1.2);
-      gain.gain.setValueAtTime(0.3, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.2);
-      osc.start();
-      osc.stop(ctx.currentTime + 1.2);
-      showToast("🐋 Listening to Blue Whale low-frequency acoustic call (140Hz)");
-    } else if (type === 'turtle') {
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(420, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(220, ctx.currentTime + 0.6);
-      gain.gain.setValueAtTime(0.2, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.6);
-      showToast("🐢 Listening to Loggerhead Sea Turtle hydrophone pulse (420Hz)");
-    } else if (type === 'coral') {
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(800, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.8);
-      gain.gain.setValueAtTime(0.15, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.8);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.8);
-      showToast("🪸 Listening to Coral Reef bio-acoustic crackle (1.2kHz)");
-    } else if (type === 'shark') {
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(110, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.9);
-      gain.gain.setValueAtTime(0.25, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.9);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.9);
-      showToast("🦈 Listening to Apex Shark telemetry beacon (110Hz)");
-    } else {
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(600, ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(900, ctx.currentTime + 0.5);
-      gain.gain.setValueAtTime(0.2, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
-      osc.start();
-      osc.stop(ctx.currentTime + 0.5);
-      showToast("🐠 Listening to Reef Fish grazing bio-chatter");
-    }
-  } catch (e) {
-    showToast(`🔊 Listening to ${type} acoustic signal`);
-  }
 }
 
 /* ------------------------------------------
