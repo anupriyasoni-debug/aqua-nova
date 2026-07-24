@@ -106,9 +106,8 @@
 /* ABOUT SECTION */
 .about {
   padding: 80px 50px;
-  background-color: white;
-  display: flex;
-  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.92);
+  text-align: center;
 }
 
 .about-content {
@@ -371,11 +370,10 @@
 }
 
 /* FOOTER */
-.footer {
-  background-color: #023e73;
-  color: white;
+.forms-section {
+  padding: 80px 50px;
+  background-color: rgba(240, 249, 255, 0.85);
   text-align: center;
-  padding: 30px;
 }
 
 .footer-small {
@@ -386,6 +384,7 @@
 
 /* RESPONSIVE - applies only on screens smaller than 768px (tablets/phones) */
 @media (max-width: 768px) {
+  
 
   .navbar {
     flex-direction: column;
@@ -407,6 +406,19 @@
   .hero h1 {
     font-size: 32px;
   }
+  .form-card {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-visual {
+    height: 200px;
+    order: -1;
+  }
 
   .hero p {
     font-size: 16px;
@@ -419,12 +431,16 @@
   }
 
   .about {
-    padding: 50px 20px;
-  }
+  padding: 80px 50px;
+  background-color: rgba(255, 255, 255, 0.92);
+  text-align: center;
+}
 
-  .about-content h2 {
-    font-size: 26px;
-  }
+.about-content {
+  max-width: 750px;
+  margin: 0 auto 20px auto;
+  text-align: center;
+}
 
   .comparison-container {
     max-width: 100%;
@@ -432,12 +448,16 @@
   }
 
   .slider-section {
-    padding: 50px 20px;
-  }
+  padding: 80px 50px;
+  background-color: rgba(240, 249, 255, 0.85);
+  text-align: center;
+}
 
   .promise-section {
-    padding: 50px 20px;
-  }
+  padding: 80px 50px;
+  background-color: rgba(255, 255, 255, 0.92);
+  text-align: center;
+}
 
   .promise-input-box {
     flex-direction: column;
@@ -450,8 +470,11 @@
   }
 
   .forms-section {
-    padding: 50px 20px;
-  }
+  padding: 80px 50px;
+  background-color: rgba(240, 249, 255, 0.85);
+  text-align: center;
+}
+
 
   .forms-container {
     flex-direction: column;
@@ -517,11 +540,11 @@
 }
 /* STATS CARDS */
 .stats-container {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 25px;
-  flex-wrap: wrap;
-  margin: 60px 0;
+  margin: 60px auto;
+  max-width: 1000px;
 }
 
 .stat-card {
@@ -559,16 +582,23 @@
 
 /* MISSION GRID */
 .mission-grid {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 25px;
-  flex-wrap: wrap;
-  margin-top: 60px;
+  margin-top: 40px;
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
+  align-items: start;   /* NEW */
 }
-
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  margin: 60px auto;
+  max-width: 1000px;
+  align-items: start;   /* NEW: stops cards from stretching to fill row height */
+}
 .mission-item {
   background-color: #f0f9ff;
   padding: 28px;
@@ -767,4 +797,226 @@
   margin-top: 10px;
   padding-top: 16px;
   border-top: 1px solid #eee;
+}/* SWIMMING FISH */
+.swimming-fish {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.fish {
+  position: absolute;
+  font-size: 28px;
+  animation: swim linear infinite;
+  opacity: 0.7;
+}
+
+.fish-1 { top: 20%; animation-duration: 18s; animation-delay: 0s; font-size: 24px; }
+.fish-2 { top: 45%; animation-duration: 22s; animation-delay: 4s; font-size: 32px; }
+.fish-3 { top: 65%; animation-duration: 16s; animation-delay: 2s; font-size: 20px; }
+.fish-4 { top: 30%; animation-duration: 25s; animation-delay: 8s; font-size: 28px; }
+
+@keyframes swim {
+  0% {
+    left: -50px;
+    transform: scaleX(1);
+  }
+  49% {
+    transform: scaleX(1);
+  }
+  50% {
+    left: 100%;
+    transform: scaleX(-1);
+  }
+  99% {
+    transform: scaleX(-1);
+  }
+  100% {
+    left: -50px;
+    transform: scaleX(1);
+  }
+}
+
+/* SEAWEED AT BOTTOM */
+.seaweed-container {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.seaweed {
+  width: 12px;
+  height: 70px;
+  background: linear-gradient(180deg, #2d8a5f, #1a5c3d);
+  border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+  transform-origin: bottom center;
+  animation: sway ease-in-out infinite;
+  opacity: 0.5;
+}
+
+.sw-1 { height: 60px; animation-duration: 4s; }
+.sw-2 { height: 85px; animation-duration: 5s; animation-delay: 0.5s; }
+.sw-3 { height: 50px; animation-duration: 3.5s; animation-delay: 1s; }
+.sw-4 { height: 90px; animation-duration: 4.5s; animation-delay: 1.5s; }
+.sw-5 { height: 65px; animation-duration: 5.5s; animation-delay: 0.3s; }
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
+
+/* WAVE LAYER AT BOTTOM OF HERO */
+.wave-layer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 1;
+}
+
+.wave-layer svg {
+  width: 100%;
+  height: 80px;
+  display: block;
+}
+
+/* keep text above all background layers */
+.hero h1, .hero p, .hero-buttons {
+  position: relative;
+  z-index: 3;
+}
+/* GLOBAL OCEAN BACKGROUND - sits behind entire site */
+.ocean-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(180deg, #04203e 0%, #0a4a6e 40%, #1a6b8c 100%);
+}
+
+/* fish swimming at different depths across whole viewport */
+.ocean-fish {
+  position: absolute;
+  font-size: 30px;
+  opacity: 0.5;
+  animation: swimAcross linear infinite;
+}
+
+.gf-1 { top: 8%;  font-size: 26px; animation-duration: 20s; animation-delay: 0s; }
+.gf-2 { top: 22%; font-size: 34px; animation-duration: 26s; animation-delay: 5s; }
+.gf-3 { top: 38%; font-size: 22px; animation-duration: 18s; animation-delay: 2s; }
+.gf-4 { top: 55%; font-size: 30px; animation-duration: 24s; animation-delay: 9s; }
+.gf-5 { top: 70%; font-size: 26px; animation-duration: 21s; animation-delay: 4s; }
+.gf-6 { top: 85%; font-size: 32px; animation-duration: 28s; animation-delay: 7s; }
+
+@keyframes swimAcross {
+  0%   { left: -60px; transform: scaleX(1); }
+  49%  { transform: scaleX(1); }
+  50%  { left: 105%;  transform: scaleX(-1); }
+  99%  { transform: scaleX(-1); }
+  100% { left: -60px; transform: scaleX(1); }
+}
+
+/* bubbles rising across whole viewport height */
+.ocean-bubbles span {
+  position: absolute;
+  bottom: -50px;
+  background-color: rgba(93, 217, 193, 0.25);
+  border-radius: 50%;
+  animation: floatUpGlobal linear infinite;
+}
+
+.ocean-bubbles span:nth-child(1)  { left: 3%;  width: 10px; height: 10px; animation-duration: 14s; animation-delay: 0s; }
+.ocean-bubbles span:nth-child(2)  { left: 12%; width: 16px; height: 16px; animation-duration: 18s; animation-delay: 3s; }
+.ocean-bubbles span:nth-child(3)  { left: 20%; width: 8px;  height: 8px;  animation-duration: 12s; animation-delay: 6s; }
+.ocean-bubbles span:nth-child(4)  { left: 30%; width: 14px; height: 14px; animation-duration: 20s; animation-delay: 1s; }
+.ocean-bubbles span:nth-child(5)  { left: 42%; width: 12px; height: 12px; animation-duration: 16s; animation-delay: 8s; }
+.ocean-bubbles span:nth-child(6)  { left: 50%; width: 18px; height: 18px; animation-duration: 22s; animation-delay: 2s; }
+.ocean-bubbles span:nth-child(7)  { left: 60%; width: 10px; height: 10px; animation-duration: 15s; animation-delay: 5s; }
+.ocean-bubbles span:nth-child(8)  { left: 68%; width: 16px; height: 16px; animation-duration: 19s; animation-delay: 9s; }
+.ocean-bubbles span:nth-child(9)  { left: 78%; width: 8px;  height: 8px;  animation-duration: 13s; animation-delay: 4s; }
+.ocean-bubbles span:nth-child(10) { left: 85%; width: 14px; height: 14px; animation-duration: 21s; animation-delay: 7s; }
+.ocean-bubbles span:nth-child(11) { left: 92%; width: 12px; height: 12px; animation-duration: 17s; animation-delay: 10s; }
+.ocean-bubbles span:nth-child(12) { left: 97%; width: 10px; height: 10px; animation-duration: 23s; animation-delay: 1s; }
+
+@keyframes floatUpGlobal {
+  0%   { transform: translateY(0); opacity: 0; }
+  10%  { opacity: 0.6; }
+  100% { transform: translateY(-1000px); opacity: 0; }
+}
+
+/* soft coral silhouettes fixed at the edges */
+.coral-silhouette {
+  position: absolute;
+  bottom: -20px;
+  font-size: 120px;
+  opacity: 0.15;
+}
+
+.coral-silhouette.left { left: -20px; }
+.coral-silhouette.right { right: -20px; transform: scaleX(-1); }
+.about h2 {
+  font-size: 32px;
+  color: #023e73;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 50px;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+.about-text p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.about-visual {
+  position: relative;
+  height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floating-icon {
+  position: absolute;
+  font-size: 60px;
+  animation: floatGentle ease-in-out infinite;
+  opacity: 0.9;
+}
+
+.icon-1 { top: 10%;  left: 20%; font-size: 55px; animation-duration: 4s; animation-delay: 0s; }
+.icon-2 { top: 40%;  left: 55%; font-size: 70px; animation-duration: 5s; animation-delay: 0.5s; }
+.icon-3 { top: 65%;  left: 15%; font-size: 50px; animation-duration: 4.5s; animation-delay: 1s; }
+.icon-4 { top: 15%;  left: 65%; font-size: 45px; animation-duration: 3.5s; animation-delay: 1.5s; }
+.icon-5 { top: 55%;  left: 40%; font-size: 65px; animation-duration: 5.5s; animation-delay: 0.8s; }
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }

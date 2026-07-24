@@ -8,6 +8,24 @@
 </head>
 
 <body>
+  <!-- GLOBAL OCEAN BACKGROUND -->
+  <div class="ocean-bg">
+    <div class="ocean-fish gf-1">🐟</div>
+    <div class="ocean-fish gf-2">🐠</div>
+    <div class="ocean-fish gf-3">🐡</div>
+    <div class="ocean-fish gf-4">🐟</div>
+    <div class="ocean-fish gf-5">🐠</div>
+    <div class="ocean-fish gf-6">🐙</div>
+
+    <div class="ocean-bubbles">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span>
+    </div>
+
+    <div class="coral-silhouette left">🪸</div>
+    <div class="coral-silhouette right">🪸</div>
+  </div>
 
   <!-- NAVBAR -->
   <nav class="navbar">
@@ -24,12 +42,39 @@
 
  <!-- HERO SECTION -->
   <section id="home" class="hero">
-  <p class="hero-eyebrow">Every breath you take, the ocean gave you</p>
-  <h1>The Reef Kept Us Alive. <span class="highlight">Now It Needs You.</span></h1>
+  <div class="light-rays"></div>
+
+  <div class="swimming-fish">
+    <span class="fish fish-1">🐟</span>
+    <span class="fish fish-2">🐠</span>
+    <span class="fish fish-3">🐡</span>
+    <span class="fish fish-4">🐟</span>
+  </div>
+
+  <div class="bubbles">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <h1>The Reef Kept Us Alive. Now It Needs You.</h1>
   <p>Coral reefs and marine life are dying. You can help save them.</p>
   <div class="hero-buttons">
     <a href="#volunteer" class="btn btn-primary">Volunteer With Us</a>
     <a href="#support" class="btn btn-secondary">Support Marine Life</a>
+  </div>
+
+  <div class="seaweed-container">
+    <div class="seaweed sw-1"></div>
+    <div class="seaweed sw-2"></div>
+    <div class="seaweed sw-3"></div>
+    <div class="seaweed sw-4"></div>
+    <div class="seaweed sw-5"></div>
+  </div>
+
+  <div class="wave-layer">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path d="M0,60 C360,120 1080,0 1440,60 L1440,120 L0,120 Z" fill="#d4f1f4"></path>
+    </svg>
   </div>
 </section>
 
@@ -73,37 +118,61 @@
  
   <!-- ABOUT SECTION -->
   <section id="about" class="about">
-    <div class="about-content">
-      <h2>Why It Matters</h2>
-      <p>Coral reefs support nearly 25% of all marine life, but more than half of the world's reefs have already died or been severely damaged. Pollution, plastic waste, and rising ocean temperatures are destroying homes for fish, turtles, and coral together.</p>
-      <p>REEF exists to turn awareness into action — connecting people directly to the reefs and marine life they can help protect.</p>
+  <h2>Why It Matters</h2>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Coral reefs cover less than 1% of the ocean floor, yet they support nearly 25% of all marine species — from tiny reef fish to sea turtles and sharks. They are often called the "rainforests of the sea" because of how much life depends on them.</p>
+      <p>But today, more than half of the world's coral reefs have already died or been severely damaged. Rising ocean temperatures cause coral bleaching, plastic pollution smothers reef systems, and overfishing disrupts the delicate balance that keeps these ecosystems alive.</p>
+      <p>The damage isn't limited to reefs alone — when coral dies, the fish that depend on it disappear too, followed by the larger species that feed on those fish. It's a chain reaction that eventually reaches human communities who rely on oceans for food, income, and coastal protection.</p>
+      <p><strong>REEF exists to break that chain.</strong> We connect everyday people directly to real conservation efforts — through volunteering, funding, and awareness — turning passive concern into active protection.</p>
     </div>
+
+    <div class="about-visual">
+      <div class="floating-icon icon-1">🐠</div>
+      <div class="floating-icon icon-2">🪸</div>
+      <div class="floating-icon icon-3">🐢</div>
+      <div class="floating-icon icon-4">🐡</div>
+      <div class="floating-icon icon-5">🌊</div>
+    </div>
+  </div>
+
+  <div class="stats-container">
+    <!-- your 4 stat cards, unchanged -->
+  </div>
+
+  <div class="mission-grid">
+    <!-- your 3 mission cards, unchanged -->
+  </div>
+</section>
 
     <div class="stats-container">
-      <div class="stat-card">
-        <div class="stat-icon">🪸</div>
-        <div class="stat-number">50%</div>
-        <div class="stat-label">of coral reefs already lost worldwide</div>
-      </div>
 
-      <div class="stat-card">
-        <div class="stat-icon">🐠</div>
-        <div class="stat-number">25%</div>
-        <div class="stat-label">of marine species depend on reefs</div>
-      </div>
+  <div class="stat-card reveal">
+    <div class="stat-icon">🪸</div>
+    <div class="stat-number" data-target="50" data-suffix="%">0%</div>
+    <div class="stat-label">of coral reefs already lost worldwide</div>
+  </div>
 
-      <div class="stat-card">
-        <div class="stat-icon">🌊</div>
-        <div class="stat-number">1M+</div>
-        <div class="stat-label">tons of plastic enter oceans yearly</div>
-      </div>
+  <div class="stat-card reveal">
+    <div class="stat-icon">🐠</div>
+    <div class="stat-number" data-target="25" data-suffix="%">0%</div>
+    <div class="stat-label">of marine species depend on reefs</div>
+  </div>
 
-      <div class="stat-card">
-        <div class="stat-icon">⏳</div>
-        <div class="stat-number">2050</div>
-        <div class="stat-label">year reefs could disappear if trends continue</div>
-      </div>
-    </div>
+  <div class="stat-card reveal">
+    <div class="stat-icon">🌊</div>
+    <div class="stat-number" data-target="1" data-suffix="M+">0M+</div>
+    <div class="stat-label">tons of plastic enter oceans yearly</div>
+  </div>
+
+  <div class="stat-card reveal">
+    <div class="stat-icon">⏳</div>
+    <div class="stat-number" data-target="2050" data-suffix="">0</div>
+    <div class="stat-label">year reefs could disappear if trends continue</div>
+  </div>
+
+</div>
 
     <div class="mission-grid">
       <div class="mission-item">

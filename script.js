@@ -130,3 +130,38 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealElements.forEach((el) => {
   revealObserver.observe(el);
 });
+// COUNT-UP ANIMATION FOR STAT NUMBERS
+const statNumbers = document.querySelectorAll('.stat-number');
+
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      animateCount(entry.target);
+      countObserver.unobserve(entry.target); // only run once per card
+    }
+  });
+}, { threshold: 0.5 });
+
+statNumbers.forEach((el) => countObserver.observe(el));
+
+function animateCount(el) {
+  const target = parseInt(el.getAttribute('data-target'));
+  const suffix = el.getAttribute('data-suffix') || '';
+  const duration = 1500; // 1.5 seconds
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const currentValue = Math.floor(progress * target);
+    el.textContent = currentValue + suffix;
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    } else {
+      el.textContent = target + suffix;
+    }
+  }
+
+  requestAnimationFrame(update);
+}
