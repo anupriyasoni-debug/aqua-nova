@@ -526,33 +526,62 @@ function initAdoptSystem() {
 }
 
 /* ------------------------------------------
-   6. VOLUNTEER & DIVE RESERVATION SYSTEM
+   6. VOLUNTEER & DIVE RESERVATION SYSTEM (UPDATED WITH 2 FORMS)
    ------------------------------------------ */
 function initVolunteerSystem() {
-  const btnReserve = document.getElementById('btnReserveDive');
-  const spotsCount = document.getElementById('diveSpotsCount');
-  let spotsLeft = 4;
+  // --- GENERAL VOLUNTEER MODAL LOGIC ---
+  const volunteerModal = document.getElementById('volunteerModal');
+  const closeVolunteerBtn = document.getElementById('closeVolunteerModal');
+  const volunteerForm = document.getElementById('volunteerForm');
+  const activityBtns = document.querySelectorAll('.btn-activity-join');
 
-  if (btnReserve) {
-    btnReserve.addEventListener('click', () => {
-      if (spotsLeft > 0) {
-        spotsLeft--;
-        if (spotsCount) spotsCount.textContent = `${spotsLeft} Spots Left`;
-        boostReefHealth(1);
-        showToast("🤿 Reserved 1 spot for Key Largo Reef Dive! Check your email for expedition details.");
-      } else {
-        showToast("⚠️ This dive event is fully booked! Explore shoreline activities below.");
-      }
+  const openVolunteer = () => volunteerModal.classList.add('active');
+  const closeVolunteer = () => volunteerModal.classList.remove('active');
+
+  activityBtns.forEach(btn => btn.addEventListener('click', openVolunteer));
+  if (closeVolunteerBtn) closeVolunteerBtn.addEventListener('click', closeVolunteer);
+  
+  if (volunteerModal) {
+    volunteerModal.addEventListener('click', (e) => {
+      if (e.target === volunteerModal) closeVolunteer();
     });
   }
 
-  const activityBtns = document.querySelectorAll('.btn-activity-join');
-  activityBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      boostReefHealth(1);
-      showToast("🤝 Thank you for joining our conservation team! We will be in touch shortly.");
+  if (volunteerForm) {
+    volunteerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      closeVolunteer();
+      boostReefHealth(2, "🌟 Application submitted! Welcome to the conservation team.");
+      volunteerForm.reset();
     });
-  });
+  }
+
+  // --- RESERVE DIVE MODAL LOGIC ---
+  const reserveModal = document.getElementById('reserveModal');
+  const closeReserveBtn = document.getElementById('closeReserveModal');
+  const reserveForm = document.getElementById('reserveForm');
+  const btnReserve = document.getElementById('btnReserveDive');
+
+  const openReserve = () => reserveModal.classList.add('active');
+  const closeReserve = () => reserveModal.classList.remove('active');
+
+  if (btnReserve) btnReserve.addEventListener('click', openReserve);
+  if (closeReserveBtn) closeReserveBtn.addEventListener('click', closeReserve);
+  
+  if (reserveModal) {
+    reserveModal.addEventListener('click', (e) => {
+      if (e.target === reserveModal) closeReserve();
+    });
+  }
+
+  if (reserveForm) {
+    reserveForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      closeReserve();
+      boostReefHealth(3, "🤿 Dive Reserved! We have sent the expedition details to your email.");
+      reserveForm.reset();
+    });
+  }
 }
 
 /* ------------------------------------------
@@ -718,3 +747,193 @@ function showToast(msg) {
     }
   }, 4000);
 }
+
+/* ------------------------------------------
+   12. BACK TO TOP BUTTON & CONTACT FORM
+   ------------------------------------------ */
+document.addEventListener('DOMContentLoaded', () => {
+  const backToTopBtn = document.getElementById('backToTop');
+  const contactForm = document.getElementById('contactForm');
+
+  // Back to Top Logic
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 500) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Contact Form Logic
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      showToast("📡 Transmission successful! Our base station will review your message.");
+      contactForm.reset();
+    });
+  }
+});
+
+/* ------------------------------------------
+   13. AI CHATBOT LOGIC (GAMIFIED & FAQ)
+   ------------------------------------------ */
+document.addEventListener('DOMContentLoaded', () => {
+  const chatToggleBtn = document.getElementById('chatToggleBtn');
+  const chatWindow = document.getElementById('chatWindow');
+  const closeChatBtn = document.getElementById('closeChatBtn');
+  const sendChatBtn = document.getElementById('sendChatBtn');
+  const chatInput = document.getElementById('chatInput');
+  const chatBody = document.getElementById('chatBody');
+  const optionBtns = document.querySelectorAll('.chat-opt-btn');
+
+  // Toggle Chat Window
+  if (chatToggleBtn && chatWindow) {
+    chatToggleBtn.addEventListener('click', () => {
+      chatWindow.classList.toggle('open');
+    });
+  }
+
+  if (closeChatBtn && chatWindow) {
+    closeChatBtn.addEventListener('click', () => {
+      chatWindow.classList.remove('open');
+    });
+  }
+
+  // Add User Message Function
+  const addUserMessage = (text) => {
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'chat-msg user-msg';
+    msgDiv.innerHTML = `<div class="msg-bubble">${text}</div>`;
+    chatBody.appendChild(msgDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  };
+
+  // Add Bot Reply Function
+  const addBotReply = (text) => {
+    setTimeout(() => {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'chat-msg bot-msg';
+      msgDiv.innerHTML = `<div class="msg-bubble">${text}</div>`;
+      chatBody.appendChild(msgDiv);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }, 600);
+  };
+
+  // Send message and handle FAQs
+  const handleSend = () => {
+    const text = chatInput.value.trim();
+    if (text === '') return;
+    
+    addUserMessage(text);
+    chatInput.value = '';
+
+    const lowerText = text.toLowerCase();
+
+    // FAQ & Badges Logic
+    if (lowerText.includes('reserve') || lowerText.includes('dive') || lowerText.includes('volunteer') || lowerText.includes('book')) {
+      addBotReply("That's the spirit! 🏅 You've just earned the 'Ocean Defender' badge! To book or reserve your spot, please click the 'Reserve' button in the Volunteer section.");
+      if (typeof boostReefHealth === "function") boostReefHealth(1);
+    } 
+    else if (lowerText.includes('adopt') || lowerText.includes('coral') || lowerText.includes('buy')) {
+      addBotReply("You can adopt Staghorn, Brain, or Elkhorn coral starting at $25. You'll even get GPS coordinates to track its growth!");
+    } 
+    else if (lowerText.includes('plastic') || lowerText.includes('pollution') || lowerText.includes('clean')) {
+      addBotReply("Plastic pollution is a huge threat. You can help by joining our Shoreline Cleanup events or making a promise on our Promise Wall!");
+    } 
+    else {
+      addBotReply("Hmm, I'm not entirely sure about that. But feel free to ask me any other questions about our ocean missions, adopting coral, or how to book upcoming dives! 🌊");
+    }
+  };
+
+  if (sendChatBtn) sendChatBtn.addEventListener('click', handleSend);
+  if (chatInput) {
+    chatInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') handleSend();
+    });
+  }
+
+  // Handle quick option buttons (Gives Badges)
+  if (optionBtns) {
+    optionBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const text = e.target.textContent;
+        addUserMessage(text);
+        
+        if(text.includes('Volunteer')) {
+          addBotReply("Awesome choice! 🏅 You've just unlocked the 'Ocean Defender' badge! Scroll to the Volunteer section to officially book your spot.");
+          if (typeof boostReefHealth === "function") boostReefHealth(1);
+        } else if (text.includes('Adopt')) {
+          addBotReply("Adopting a coral fragment is the best way to help! Check out the Staghorn or Brain Coral options in the Adopt section.");
+        }
+      });
+    });
+  }
+
+  // Open Chat from FAQ Section Link
+  const openChatFromFaq = document.getElementById('openChatFromFaq');
+  if (openChatFromFaq && chatWindow) {
+    openChatFromFaq.addEventListener('click', () => {
+      chatWindow.classList.add('open');
+    });
+  }
+});
+
+/* ------------------------------------------
+   14. FAQ ACCORDION & FILTER LOGIC
+   ------------------------------------------ */
+document.addEventListener('DOMContentLoaded', () => {
+  const faqItems = document.querySelectorAll('.faq-item');
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  const faqFilters = document.querySelectorAll('.faq-filter-btn');
+
+  // Accordion Click Logic
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+      const currentItem = question.parentElement;
+
+      // Close all other items
+      faqItems.forEach(item => {
+        if (item !== currentItem) {
+          item.classList.remove('active');
+        }
+      });
+
+      // Toggle the clicked item
+      currentItem.classList.toggle('active');
+    });
+  });
+
+  // Filter Logic
+  faqFilters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remove active class from all buttons
+      faqFilters.forEach(f => f.classList.remove('active'));
+      // Add active class to clicked button
+      btn.classList.add('active');
+
+      const filterValue = btn.getAttribute('data-faq');
+
+      faqItems.forEach(item => {
+        // Reset active state when filtering
+        item.classList.remove('active'); 
+        
+        const category = item.getAttribute('data-category');
+        
+        if (filterValue === 'all' || filterValue === category) {
+          item.style.display = 'block';
+          // Small animation effect
+          item.style.opacity = '0';
+          setTimeout(() => item.style.opacity = '1', 50);
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+});

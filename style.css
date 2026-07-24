@@ -1826,3 +1826,597 @@ body {
     gap: 15px;
   }
 }
+
+/* ==========================================
+   ENHANCED INTERACTIONS & UNIQUE BACKGROUNDS
+   ========================================== */
+
+/* Unique Section Backgrounds */
+#voices { background: radial-gradient(circle at 10% 90%, rgba(0, 180, 216, 0.1), transparent 50%), linear-gradient(180deg, var(--navy) 0%, var(--deep-blue) 100%); }
+#story { background: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" stroke="rgba(93,217,193,0.03)" stroke-width="2" fill="none"/></svg>'), linear-gradient(180deg, var(--navy) 0%, var(--deep-blue) 100%); }
+#volunteer { background: radial-gradient(circle at 90% 10%, rgba(93, 217, 193, 0.08), transparent 40%), linear-gradient(180deg, var(--midnight-blue) 0%, var(--navy) 100%); }
+
+/* Card Lift & Hover Effects */
+.stat-card, .voice-card, .activity-card, .species-card, .coral-option {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease !important;
+}
+.stat-card:hover, .voice-card:hover, .activity-card:hover, .species-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: var(--shadow-glow) !important;
+}
+
+/* Button Glow */
+.glow-button {
+  position: relative;
+  overflow: hidden;
+}
+.glow-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.glow-button:hover::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ==========================================
+   SECTION DIVIDER ANIMATIONS
+   ========================================== */
+.section-divider {
+  height: 80px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--navy);
+}
+
+/* Sonar Radar */
+.radar-ping {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--mint);
+  border-radius: 50%;
+  opacity: 0;
+  animation: ping 3s infinite ease-out;
+}
+.delay-1 { animation-delay: 1s; }
+.delay-2 { animation-delay: 2s; }
+@keyframes ping {
+  0% { transform: scale(0); opacity: 0.8; }
+  100% { transform: scale(6); opacity: 0; }
+}
+
+/* Pollution Floating */
+.debris {
+  position: absolute;
+  font-size: 24px;
+  bottom: 10px;
+  opacity: 0.6;
+  animation: floatDebris 8s infinite linear;
+}
+.d1 { left: -10%; animation-duration: 12s; }
+.d2 { left: -20%; animation-duration: 9s; animation-delay: 2s; }
+.d3 { left: -5%; animation-duration: 15s; animation-delay: 4s; }
+@keyframes floatDebris {
+  0% { transform: translateX(0vw) rotate(0deg) translateY(0); }
+  50% { transform: translateX(50vw) rotate(180deg) translateY(-15px); }
+  100% { transform: translateX(110vw) rotate(360deg) translateY(0); }
+}
+
+/* Biodiversity Swimmers */
+.swimmer {
+  position: absolute;
+  font-size: 30px;
+  animation: swim 10s infinite linear;
+}
+.s1 { top: 20px; left: -10%; animation-duration: 14s; }
+.s2 { top: 40px; left: -20%; animation-duration: 18s; animation-delay: 3s; }
+.s3 { top: 10px; left: -15%; animation-duration: 12s; animation-delay: 5s; }
+@keyframes swim {
+  0% { transform: translateX(0) scaleX(1); }
+  49% { transform: translateX(110vw) scaleX(1); }
+  50% { transform: translateX(110vw) scaleX(-1); }
+  99% { transform: translateX(-10vw) scaleX(-1); }
+  100% { transform: translateX(-10vw) scaleX(1); }
+}
+
+/* Coral Growth */
+.coral-anim {
+  font-size: 30px;
+  margin: 0 20px;
+  transform-origin: bottom;
+  animation: coralSway 4s infinite alternate ease-in-out;
+}
+.c2 { animation-delay: 1s; font-size: 35px; }
+@keyframes coralSway {
+  0% { transform: rotate(-10deg) scale(0.9); }
+  100% { transform: rotate(10deg) scale(1.1); }
+}
+
+/* ==========================================
+   CONTACT SECTION & PREMIUM FOOTER
+   ========================================== */
+/* Update this in your style.css */
+.contact-section {
+  padding: 90px 40px;
+  background: linear-gradient(180deg, var(--navy) 0%, #010d18 100%);
+}
+.contact-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;
+}
+.contact-info p { margin-bottom: 15px; font-size: 15px; color: var(--text-muted); }
+.social-links { display: flex; gap: 15px; margin-top: 20px; }
+.social-icon { 
+  padding: 8px 16px; 
+  background: var(--dark-glass); 
+  border: 1px solid var(--border-cyan); 
+  border-radius: 20px; 
+  color: var(--mint); 
+  text-decoration: none; 
+  font-size: 13px;
+  transition: all 0.3s;
+}
+.social-icon:hover { background: var(--mint); color: var(--navy); }
+
+/* Back to Top */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: var(--dark-glass);
+  border: 1.5px solid var(--mint);
+  color: var(--mint);
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  backdrop-filter: blur(10px);
+}
+.back-to-top.visible { opacity: 1; pointer-events: auto; }
+.back-to-top:hover { background: var(--mint); color: var(--navy); transform: translateY(-5px); }
+
+/* ==========================================
+   GLASSMORPHISM MODAL & FORMS
+   ========================================== */
+.glass-form {
+  background: rgba(1, 22, 39, 0.4);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(93, 217, 193, 0.2);
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+.glass-form input, .glass-form textarea, .glass-form select {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.glass-form input:focus, .glass-form textarea:focus, .glass-form select:focus {
+  border-color: var(--mint);
+  box-shadow: 0 0 10px rgba(93, 217, 193, 0.2);
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.radio-group label { font-size: 13px; color: var(--text-muted); }
+.radio-options { display: flex; gap: 20px; margin-top: 8px; }
+.w-100 { width: 100%; }
+
+.glass-modal-overlay {
+  position: fixed; inset: 0; background: rgba(1, 13, 24, 0.7); backdrop-filter: blur(8px);
+  z-index: 9999; display: flex; justify-content: center; align-items: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+}
+.glass-modal-overlay.active { opacity: 1; pointer-events: auto; }
+.glass-modal {
+  background: linear-gradient(135deg, rgba(2, 62, 115, 0.8), rgba(1, 22, 39, 0.9));
+  border: 1px solid var(--border-cyan); border-radius: 24px; padding: 40px;
+  max-width: 600px; width: 90%; position: relative; transform: translateY(30px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.glass-modal-overlay.active .glass-modal { transform: translateY(0); }
+.modal-header { text-align: center; margin-bottom: 25px; }
+.modal-header h3 { font-size: 26px; color: white; margin: 10px 0 5px; }
+.modal-header p { color: var(--text-muted); font-size: 14px; }
+.modal-icon { font-size: 40px; display: inline-block; animation: floatDebris 4s infinite ease-in-out alternate; }
+/* ==========================================
+   ENHANCED SECTION DIFFERENTIATION (Alag dikhne ke liye)
+   ========================================== */
+   
+/* Status Page - Tech Dashboard Vibe */
+#status { 
+  background: linear-gradient(180deg, rgba(1, 42, 74, 0.95) 0%, var(--navy) 100%); 
+  border-bottom: 2px solid rgba(93, 217, 193, 0.1);
+}
+
+/* Voices Page - Deep Ocean Vibe */
+#voices { 
+  background: radial-gradient(circle at 10% 90%, rgba(0, 180, 216, 0.08), transparent 50%), linear-gradient(180deg, var(--navy) 0%, #011222 100%); 
+  border-bottom: 2px solid rgba(0, 180, 216, 0.1);
+}
+
+/* Volunteer Page - Community & Brighter Vibe */
+#volunteer { 
+  background: radial-gradient(circle at 90% 10%, rgba(93, 217, 193, 0.08), transparent 40%), linear-gradient(180deg, #011a2e 0%, var(--navy) 100%); 
+  border-bottom: 2px solid rgba(93, 217, 193, 0.15);
+}
+
+/* Adopt Page - Warm Coral Vibe */
+#adopt {
+  background: radial-gradient(circle at 50% 0%, rgba(255, 107, 107, 0.05), transparent 60%), linear-gradient(180deg, var(--deep-blue) 0%, var(--midnight-blue) 100%);
+}
+
+/* Contact Header Style (Left Aligned REEF) */
+.contact-header-left {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 30px auto;
+  text-align: left;
+}
+
+.contact-header-left h2 {
+  font-size: 38px;
+  color: white;
+  font-weight: 800;
+  letter-spacing: 2px;
+  display: inline-block;
+  border-bottom: 3px solid var(--mint);
+  padding-bottom: 5px;
+}
+
+/* ==========================================
+   AI OCEAN GUIDE CHATBOT
+   ========================================== */
+.chatbot-wrapper {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.chat-toggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--mint), var(--cyan));
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s;
+}
+
+.chat-toggle:hover {
+  transform: scale(1.1);
+}
+
+.chat-window {
+  width: 350px;
+  height: 450px;
+  background: rgba(1, 22, 39, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-cyan);
+  border-radius: 20px;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  transform: scale(0);
+  transform-origin: bottom right;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.chat-window.open {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.chat-header {
+  background: rgba(2, 62, 115, 0.9);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-cyan);
+}
+
+.header-info h4 {
+  color: white;
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.header-info small {
+  color: var(--mint);
+  font-size: 12px;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: var(--mint);
+  border-radius: 50%;
+  margin-right: 5px;
+  box-shadow: 0 0 8px var(--mint);
+}
+
+.close-chat {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.close-chat:hover { color: var(--coral-pink); }
+
+.chat-body {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.chat-msg {
+  max-width: 85%;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.bot-msg { align-self: flex-start; }
+.bot-msg .msg-bubble {
+  background: rgba(2, 62, 115, 0.7);
+  border: 1px solid rgba(0, 180, 216, 0.3);
+  padding: 12px 15px;
+  border-radius: 0 15px 15px 15px;
+  color: white;
+}
+
+.user-msg { align-self: flex-end; }
+.user-msg .msg-bubble {
+  background: var(--mint);
+  color: var(--navy);
+  padding: 12px 15px;
+  border-radius: 15px 0 15px 15px;
+  font-weight: 500;
+}
+
+.chat-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.chat-opt-btn {
+  background: rgba(93, 217, 193, 0.15);
+  border: 1px solid var(--border-cyan);
+  color: var(--mint);
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.chat-opt-btn:hover {
+  background: var(--mint);
+  color: var(--navy);
+}
+
+.chat-footer {
+  padding: 15px;
+  background: rgba(1, 13, 24, 0.9);
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid var(--border-cyan);
+}
+
+.chat-footer input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 20px;
+  color: white;
+  outline: none;
+}
+
+.chat-footer input:focus { border-color: var(--mint); }
+
+.chat-footer button {
+  background: var(--cyan);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--navy);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* ==========================================
+   FAQ SECTION (ACCORDION & FILTERS)
+   ========================================== */
+.faq-section {
+  padding: 90px 40px;
+  background: linear-gradient(180deg, var(--deep-blue) 0%, var(--navy) 100%);
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Category Filter Buttons */
+.faq-filter-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.faq-filter-btn {
+  background: rgba(1, 42, 74, 0.5);
+  border: 1px solid var(--border-cyan);
+  color: var(--text-muted);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-filter-btn:hover,
+.faq-filter-btn.active {
+  background: rgba(93, 217, 193, 0.15);
+  color: var(--mint);
+  border-color: var(--mint);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Accordion Styling */
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faq-item {
+  background: var(--dark-glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-cyan);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item.active {
+  border-color: var(--mint);
+  box-shadow: var(--shadow-glow);
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 20px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: color 0.3s;
+}
+
+.faq-question:hover {
+  color: var(--mint);
+}
+
+.faq-icon {
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--mint);
+  transition: transform 0.4s ease;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(45deg); /* Turns '+' into 'x' */
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, padding 0.4s ease;
+  padding: 0 25px;
+  background: rgba(1, 13, 24, 0.3);
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  padding: 0 25px 25px 25px;
+}
+
+.faq-answer p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ==========================================
+   FAQ CHATBOT PROMPT
+   ========================================== */
+.faq-chatbot-prompt {
+  text-align: center;
+  margin-top: 35px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-cyan);
+}
+
+.faq-chatbot-prompt p {
+  color: var(--text-muted);
+  font-size: 15px;
+}
+
+.faq-chat-link {
+  background: none;
+  border: none;
+  color: var(--mint);
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.3s;
+}
+
+.faq-chat-link:hover {
+  color: var(--cyan);
+}

@@ -674,6 +674,99 @@
     </div>
   </section>
 
+  <!-- ========================================== -->
+  <!-- 11.2 FREQUENTLY ASKED QUESTIONS (FAQ) -->
+  <!-- ========================================== -->
+  <section id="faq" class="faq-section">
+    <div class="section-header">
+      <h2>FAQs</h2>
+      <p>Answers to common queries about our conservation missions</p>
+    </div>
+
+    <div class="faq-container">
+      <!-- FAQ Category Options -->
+      <div class="faq-filter-tabs">
+        <button class="faq-filter-btn active" data-faq="all">All Queries</button>
+        <button class="faq-filter-btn" data-faq="volunteer">🤿 Volunteering</button>
+        <button class="faq-filter-btn" data-faq="adopt">🪸 Adoption</button>
+        <button class="faq-filter-btn" data-faq="tech">📡 AI & Tech</button>
+      </div>
+
+      <!-- FAQ Accordion Items -->
+      <div class="faq-accordion">
+        <!-- FAQ Items remain exactly the same as before -->
+        <div class="faq-item" data-category="volunteer">
+          <button class="faq-question">Do I need a diving certification to volunteer? <span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>For underwater reef restoration dives, an Open Water Certification is required. However, our shoreline cleanups and citizen mapping activities are open to everyone—no experience needed!</p></div>
+        </div>
+        <div class="faq-item" data-category="adopt">
+          <button class="faq-question">How do I track my adopted coral fragment? <span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Once you adopt a fragment, you will receive a digital certificate with specific GPS coordinates. We also send quarterly photo updates to your email so you can monitor its growth!</p></div>
+        </div>
+        <div class="faq-item" data-category="tech">
+          <button class="faq-question">How does the AI Sonar monitoring work? <span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Our underwater hydrophone arrays listen to the reef's bio-acoustics. The AI analyzes these sound frequencies (like fish clicks and coral crackles) to determine the biodiversity and overall health of the ecosystem in real-time.</p></div>
+        </div>
+        <div class="faq-item" data-category="volunteer">
+          <button class="faq-question">What should I bring to a shoreline cleanup? <span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Just bring comfortable closed-toe shoes, a reusable water bottle, and reef-safe sunscreen. We will provide all the necessary gloves, collection bags, and tools!</p></div>
+        </div>
+      </div>
+
+      <!-- NEW: Chatbot Prompt -->
+      <!-- FAQ Accordion Items Ends Here -->
+      
+      <!-- Chatbot Prompt -->
+      <div class="faq-chatbot-prompt">
+        <p>If you have any other questions, <button id="openChatFromFaq" class="faq-chat-link">ask our AI Chatbot!</button></p>
+      </div>
+    </div>
+  </section>
+
+ <!-- ========================================== -->
+  <!-- 11.5 NEW PREMIUM CONTACT SECTION -->
+  <!-- ========================================== -->
+  <section id="contact" class="contact-section">
+    <div class="contact-header-left">
+      <h2>🌊 REEF</h2>
+    </div>
+    
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Reach the Deep</h3>
+        <p>📍 Oceanic Research Facility, Base Alpha</p>
+        <p>📧 connect@reef-initiative.org</p>
+        <p>📞 +1 (800) 555-REEF</p>
+        
+        <div class="social-links">
+          <a href="#" class="social-icon">📘 Facebook</a>
+          <a href="#" class="social-icon">💼 LinkedIn</a>
+          <a href="#" class="social-icon">📸 Instagram</a>
+        </div>
+      </div>
+      
+      <form class="glass-form" id="contactForm">
+      <div class="form-title-box">
+          <h3>Send Your Message</h3>
+          <p>Have questions or feedback? Drop us a line below.</p>
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+          <textarea placeholder="Your Message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary glow-button">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button id="backToTop" class="back-to-top">↑</button>
+
   <!-- FOOTER -->
   <footer class="footer">
     <p>🌊 REEF — Protecting Coral Reefs & Marine Ecosystems</p>
@@ -684,5 +777,127 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <script src="script.js"></script>
-</body>
-</html>
+
+  <!-- ========================================== -->
+  <!-- 1. GENERAL VOLUNTEER MODAL -->
+  <!-- ========================================== -->
+  <div class="glass-modal-overlay" id="volunteerModal">
+    <div class="glass-modal">
+      <button class="modal-close" id="closeVolunteerModal">✕</button>
+      <div class="modal-header">
+        <span class="modal-icon">🤝</span>
+        <h3>Join the Expedition</h3>
+        <p>Register for active deployment in our conservation zones.</p>
+      </div>
+      
+      <form id="volunteerForm" class="glass-form">
+        <div class="form-grid">
+          <input type="text" placeholder="Full Name" required>
+          <input type="email" placeholder="Email Address" required>
+          <input type="tel" placeholder="Contact Number" required>
+          <input type="text" placeholder="City" required>
+        </div>
+        
+        <div class="form-group radio-group">
+          <label>Participated in similar activities before?</label>
+          <div class="radio-options">
+            <label><input type="radio" name="experience" value="yes" required> Yes</label>
+            <label><input type="radio" name="experience" value="no"> No</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <select required>
+            <option value="" disabled selected>How would you help?</option>
+            <option value="shoreline">Shoreline Cleanup</option>
+            <option value="nursery">Coral Nursery Support</option>
+            <option value="mapping">Citizen Reef Mapping</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Date of Birth</label>
+          <input type="date" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary glow-button w-100">Submit Application</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- 2. RESERVE DIVE EVENT MODAL -->
+  <!-- ========================================== -->
+  <!-- ========================================== -->
+  <!-- 2. RESERVE DIVE EVENT MODAL -->
+  <!-- ========================================== -->
+  <div class="glass-modal-overlay" id="reserveModal">
+    <div class="glass-modal">
+      <button class="modal-close" id="closeReserveModal">✕</button>
+      <div class="modal-header">
+        <span class="modal-icon">🤿</span>
+        <h3>Reserve Your Dive</h3>
+        <p>Secure your spot for the upcoming reef restoration events.</p>
+      </div>
+      
+      <form id="reserveForm" class="glass-form">
+        <div class="form-group">
+          <input type="email" placeholder="Contact Email Address" required>
+        </div>
+        
+        <!-- NEW CITY FIELD ADDED HERE -->
+        <div class="form-group">
+          <input type="text" placeholder="Your City" required>
+        </div>
+        
+        <div class="form-group">
+          <select required>
+            <option value="" disabled selected>Select Event Date</option>
+            <option value="aug15">August 15, 2026 - Key Largo Nursery</option>
+            <option value="sep02">September 2, 2026 - Barrier Reef South</option>
+            <option value="sep20">September 20, 2026 - Coral Triangle</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary glow-button w-100">Reserve Spot</button>
+      </form>
+    </div>
+  </div>
+ <!-- ========================================== -->
+  <!-- AI OCEAN GUIDE CHATBOT -->
+  <!-- ========================================== -->
+  <div class="chatbot-wrapper">
+    <!-- Chat Toggle Button -->
+    <button id="chatToggleBtn" class="chat-toggle glow-button">
+      <span class="chat-icon-pulse">🤖</span>
+    </button>
+
+    <!-- Chat Window -->
+    <div id="chatWindow" class="chat-window">
+      <div class="chat-header">
+        <div class="header-info">
+          <h4>Reef AI Guide</h4>
+          <span class="status-dot"></span> <small>Online</small>
+        </div>
+        <button id="closeChatBtn" class="close-chat">✕</button>
+      </div>
+      
+      <div class="chat-body" id="chatBody">
+        <!-- Initial Bot Message -->
+        <div class="chat-msg bot-msg">
+          <div class="msg-bubble">
+            Hello! 🌊 I'm your AI Ocean Guide. You can ask me any questions, or tell me if you'd like to book an event. How can I help today?
+          </div>
+        </div>
+        <div class="chat-options">
+          <button class="chat-opt-btn">🤿 Volunteer</button>
+          <button class="chat-opt-btn">🪸 Adopt Coral</button>
+        </div>
+      </div>
+
+      <div class="chat-footer">
+        <input type="text" id="chatInput" placeholder="Ask about the ocean...">
+        <button id="sendChatBtn">➤</button>
+      </div>
+    </div>
+  </div>
