@@ -3,217 +3,608 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>REEF - Protect Our Ocean</title>
+  <title>REEF — Protect Our Ocean | Every Action Keeps The Reef Alive</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <!-- GLOBAL OCEAN BACKGROUND -->
-  <div class="ocean-bg">
-    <div class="ocean-fish gf-1">🐟</div>
-    <div class="ocean-fish gf-2">🐠</div>
-    <div class="ocean-fish gf-3">🐡</div>
-    <div class="ocean-fish gf-4">🐟</div>
-    <div class="ocean-fish gf-5">🐠</div>
-    <div class="ocean-fish gf-6">🐙</div>
+  <!-- ========================================== -->
+  <!-- 1. DYNAMIC HIGH-PERFORMANCE OCEAN BACKGROUND & CANVAS -->
+  <!-- ========================================== -->
+  <div class="ocean-bg" id="oceanBg">
+    <!-- HTML5 Canvas for Real-Time 60FPS Particle & Creature Physics -->
+    <canvas id="oceanCanvas"></canvas>
 
-    <div class="ocean-bubbles">
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span><span></span><span></span><span></span>
-      <span></span><span></span>
+    <!-- Volumetric Light Rays Gradient Layer -->
+    <div class="light-rays-bg"></div>
+
+    <!-- AI Ocean HUD Overlay (Sonar, Radar, Digital Grid, Telemetry) -->
+    <div class="ai-hud-layer">
+      <!-- Digital Grid Pattern -->
+      <svg class="ai-grid-svg" width="100%" height="100%">
+        <defs>
+          <pattern id="hudGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(93, 217, 193, 0.09)" stroke-width="1"/>
+            <circle cx="0" cy="0" r="1.5" fill="rgba(93, 217, 193, 0.25)"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#hudGrid)" />
+      </svg>
+
+      <!-- Corner Sonar Pulse Rings -->
+      <div class="sonar-ring sonar-top-right">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+      </div>
+
+      <div class="sonar-ring sonar-bottom-left">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="ring r3"></div>
+      </div>
+
+      <!-- Radar Scan Line Sweep -->
+      <div class="radar-scan">
+        <div class="radar-crosshair-h"></div>
+        <div class="radar-crosshair-v"></div>
+        <div class="sweep-line"></div>
+      </div>
+
+      <!-- Telemetry Data Overlay -->
+      <div class="hud-telemetry">
+        <span class="telemetry-item"><span class="blink-dot"></span> SONAR: ACTIVE (40kHz)</span>
+        <span class="telemetry-item">DEPTH: <span id="hudDepth">142</span>M</span>
+        <span class="telemetry-item">LAT: 12.97° N | LON: 145.8° E</span>
+        <span class="telemetry-item">REEF PULSE: <span id="hudPulseText">72%</span></span>
+      </div>
     </div>
 
+    <!-- Coral Silhouettes at base -->
     <div class="coral-silhouette left">🪸</div>
     <div class="coral-silhouette right">🪸</div>
   </div>
 
-  <!-- NAVBAR -->
+  <!-- ========================================== -->
+  <!-- 2. NAVBAR WITH LIVE REEF PULSE BADGE -->
+  <!-- ========================================== -->
   <nav class="navbar">
-    <div class="logo">🌊 REEF</div>
+    <div class="logo-container">
+      <div class="logo">🌊 REEF</div>
+      <div class="nav-pulse-badge" id="navPulseBadge" title="Live Ecosystem Vitality Index">
+        <span class="pulse-dot"></span>
+        <span class="pulse-label">Reef Pulse: <strong id="navPulseValue">72%</strong> Thriving</span>
+      </div>
+    </div>
     <ul class="nav-links">
       <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
+      <li><a href="#status">Status</a></li>
+      <li><a href="#voices">Voices</a></li>
+      <li><a href="#story">Story</a></li>
+      <li><a href="#adopt">Adopt Coral</a></li>
       <li><a href="#volunteer">Volunteer</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#species">Species</a></li>
+      <li><a href="#promise">Promises</a></li>
     </ul>
   </nav>
 
-
-
- <!-- HERO SECTION -->
+  <!-- ========================================== -->
+  <!-- 3. HERO SECTION ("The Reef Has a Pulse") -->
+  <!-- ========================================== -->
   <section id="home" class="hero">
-  <div class="light-rays"></div>
+    <div class="hero-content">
+      <div class="hero-text-side">
+        <div class="hero-eyebrow">OCEAN CONSERVATION INITIATIVE</div>
+        <h1>The Reef Has a Pulse. <br><span class="highlight">Every Action Keeps It Alive.</span></h1>
+        <p>Coral reefs support 25% of all marine life and protect coastal communities. When you act, the reef responds in real time.</p>
+        <div class="hero-buttons">
+          <a href="#status" class="btn btn-primary">Explore the Reef</a>
+          <a href="#adopt" class="btn btn-secondary">Adopt a Fragment</a>
+        </div>
+      </div>
 
-  <div class="swimming-fish">
-    <span class="fish fish-1">🐟</span>
-    <span class="fish fish-2">🐠</span>
-    <span class="fish fish-3">🐡</span>
-    <span class="fish fish-4">🐟</span>
-  </div>
-
-  <div class="bubbles">
-    <span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span>
-  </div>
-
-  <h1>The Reef Kept Us Alive. Now It Needs You.</h1>
-  <p>Coral reefs and marine life are dying. You can help save them.</p>
-  <div class="hero-buttons">
-    <a href="#volunteer" class="btn btn-primary">Volunteer With Us</a>
-    <a href="#support" class="btn btn-secondary">Support Marine Life</a>
-  </div>
-
-  <div class="seaweed-container">
-    <div class="seaweed sw-1"></div>
-    <div class="seaweed sw-2"></div>
-    <div class="seaweed sw-3"></div>
-    <div class="seaweed sw-4"></div>
-    <div class="seaweed sw-5"></div>
-  </div>
-
-  <div class="wave-layer">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-      <path d="M0,60 C360,120 1080,0 1440,60 L1440,120 L0,120 Z" fill="#d4f1f4"></path>
-    </svg>
-  </div>
-</section>
-
-  <!-- VOICES OF THE OCEAN -->
-  <section class="voices-section">
-    <h2 class="voices-title">Voices of the Ocean</h2>
-
-    <div class="voice-line reveal">
-      <span class="voice-icon">🪸</span>
-      <p>"I built this reef for 300 years. Plastic and heat are killing me."</p>
+      <!-- Interactive Living Reef Pulse Visual -->
+      <div class="hero-visual-side">
+        <div class="pulse-heart-wrapper" id="heroPulseHeart" title="Click to boost the reef pulse!">
+          <div class="pulse-glow-ring"></div>
+          <svg class="coral-pulse-svg" viewBox="0 0 200 200">
+            <defs>
+              <radialGradient id="coralGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#5dd9c1" stop-opacity="0.8"/>
+                <stop offset="60%" stop-color="#00b4d8" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#012a4a" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="100" cy="100" r="85" fill="url(#coralGlow)" class="glowing-orb"/>
+            <path class="coral-branch b1" d="M 100,160 C 100,120 70,100 65,70 C 62,50 80,40 75,25" fill="none" stroke="#5dd9c1" stroke-width="4" stroke-linecap="round"/>
+            <path class="coral-branch b2" d="M 100,160 C 100,120 130,100 135,70 C 138,50 120,40 125,25" fill="none" stroke="#5dd9c1" stroke-width="4" stroke-linecap="round"/>
+            <path class="coral-branch b3" d="M 100,160 C 100,110 100,70 100,30" fill="none" stroke="#00b4d8" stroke-width="5" stroke-linecap="round"/>
+            <circle cx="75" cy="25" r="6" fill="#ff6b6b"/>
+            <circle cx="125" cy="25" r="6" fill="#ff6b6b"/>
+            <circle cx="100" cy="30" r="7" fill="#5dd9c1"/>
+          </svg>
+          <div class="pulse-caption">
+            <span class="heart-icon">💓</span> Interactive Reef Core
+            <div class="tap-hint">Tap to trigger reef pulse</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="voice-line reveal">
-      <span class="voice-icon">🐢</span>
-      <p>"I ate plastic thinking it was food. It hurt me."</p>
+    <!-- Seaweed SVG sway decoration -->
+    <div class="seaweed-container">
+      <div class="seaweed sw-1"></div>
+      <div class="seaweed sw-2"></div>
+      <div class="seaweed sw-3"></div>
+      <div class="seaweed sw-4"></div>
+      <div class="seaweed sw-5"></div>
     </div>
 
-    <div class="voice-line reveal">
-      <span class="voice-icon">🐟</span>
-      <p>"My home is disappearing. Where will I go?"</p>
+    <div class="wave-layer">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path d="M0,60 C360,120 1080,0 1440,60 L1440,120 L0,120 Z" fill="#f0f9ff"></path>
+      </svg>
     </div>
-
-    <div class="voice-line reveal">
-      <span class="voice-icon">🌊</span>
-      <p>"I give you food, air, and life. Please don't let me die."</p>
-    </div>
-
-    <div class="voice-line reveal voice-final">
-      <p>You can still help. Scroll on.</p>
-    </div>
-
   </section>
 
-  <!-- WAVE DIVIDER -->
+  <!-- ========================================== -->
+  <!-- 4. "REEF STATUS" IMPACT DASHBOARD -->
+  <!-- ========================================== -->
+  <section id="status" class="status-section">
+    <div class="section-header">
+      <h2>Reef Status & Health Dashboard</h2>
+      <p>Real-time data from active marine conservation zones and fragment nurseries</p>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Circular Reef Health Meter -->
+      <div class="health-meter-card">
+        <h3>Reef Vitality Index</h3>
+        <div class="circular-meter">
+          <svg viewBox="0 0 160 160" class="meter-svg">
+            <circle cx="80" cy="80" r="65" class="meter-bg" />
+            <circle cx="80" cy="80" r="65" class="meter-progress" id="healthProgressCircle" />
+          </svg>
+          <div class="meter-inner">
+            <span class="meter-number" id="meterHealthVal">72%</span>
+            <span class="meter-status">HEALTHY</span>
+          </div>
+        </div>
+        <p class="meter-desc">Measured across 12 monitored sanctuary sites. Boost vitality by participating below!</p>
+        <button type="button" class="btn-boost" id="btnBoostHealth">✨ Action Boost (+1%)</button>
+      </div>
+
+      <!-- Impact Metrics Cards -->
+      <div class="metrics-grid">
+        <div class="stat-card reveal">
+          <div class="stat-icon">🪸</div>
+          <div class="stat-number" data-target="1240" data-suffix="">0</div>
+          <div class="stat-label">Coral Fragments Growing</div>
+        </div>
+
+        <div class="stat-card reveal">
+          <div class="stat-icon">🤿</div>
+          <div class="stat-number" data-target="38" data-suffix="">0</div>
+          <div class="stat-label">Volunteer Dives This Month</div>
+        </div>
+
+        <div class="stat-card reveal">
+          <div class="stat-icon">🗺️</div>
+          <div class="stat-number" data-target="12" data-suffix="">0</div>
+          <div class="stat-label">Reef Zones Monitored</div>
+        </div>
+
+        <div class="stat-card reveal">
+          <div class="stat-icon">💚</div>
+          <div class="stat-number" data-target="84" data-suffix="%">0%</div>
+          <div class="stat-label">Outplant Survival Rate</div>
+        </div>
+
+        <!-- Live Map-Style Card -->
+        <div class="map-card reveal">
+          <div class="map-header">
+            <span class="map-icon">📍</span>
+            <div>
+              <div class="map-title">Active Sanctuary Zone #4</div>
+              <div class="map-coords">16.2° S, 145.8° E — Great Barrier South</div>
+            </div>
+            <span class="status-pill live">LIVE</span>
+          </div>
+          <p class="map-snippet">Nursery line #8 outplanted 140 Staghorn fragments this week. Temperature: 24.8°C (Optimal).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 5. VOICES OF THE OCEAN (ENHANCED & EXTENDED) -->
+  <!-- ========================================== -->
+  <section id="voices" class="voices-section">
+    <div class="section-header text-center">
+      <div class="voices-eyebrow">OCEAN HYDROPHONE BIO-ACOUSTICS</div>
+      <h2 class="voices-title">Voices of the Ocean</h2>
+      <p class="voices-subtitle">Listen to hydrophone bio-acoustic signals & testimony from marine life fighting for survival</p>
+    </div>
+
+    <!-- Hydrophone Audio Controller Card -->
+    <div class="hydrophone-card reveal">
+      <div class="hydro-info">
+        <div class="hydro-status">
+          <span class="pulse-dot"></span>
+          <span>HYDROPHONE ARRAY #3: <strong>KEY LARGO REEF SANCTUARY</strong></span>
+        </div>
+        <div class="hydro-freq">Bio-Acoustic crackle frequency: <strong>12.4 kHz</strong> (Healthy Reef Bio-Sound Index)</div>
+      </div>
+
+      <!-- Animated Sound Waveform Bars -->
+      <div class="waveform-container" id="waveformVisualizer">
+        <span class="bar b1"></span>
+        <span class="bar b2"></span>
+        <span class="bar b3"></span>
+        <span class="bar b4"></span>
+        <span class="bar b5"></span>
+        <span class="bar b6"></span>
+        <span class="bar b7"></span>
+        <span class="bar b8"></span>
+        <span class="bar b9"></span>
+        <span class="bar b10"></span>
+        <span class="bar b11"></span>
+        <span class="bar b12"></span>
+      </div>
+
+      <button type="button" class="btn-audio-toggle" id="btnToggleAudio">
+        <span id="audioBtnIcon">🔊</span> <span id="audioBtnText">Play Bio-Acoustic Soundscape</span>
+      </button>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="voice-filter-tabs">
+      <button type="button" class="filter-tab active" data-filter="all">All Voices</button>
+      <button type="button" class="filter-tab" data-filter="coral">🪸 Coral Reef</button>
+      <button type="button" class="filter-tab" data-filter="turtle">🐢 Sea Turtles</button>
+      <button type="button" class="filter-tab" data-filter="mammal">🐋 Whales & Mammals</button>
+      <button type="button" class="filter-tab" data-filter="shark">🦈 Predators</button>
+      <button type="button" class="filter-tab" data-filter="fish">🐠 Reef Fish</button>
+    </div>
+
+    <!-- Voices Grid Stream -->
+    <div class="voices-grid">
+      <!-- Coral Card -->
+      <div class="voice-card reveal" data-category="coral">
+        <div class="voice-card-header">
+          <span class="v-icon">🪸</span>
+          <div>
+            <h3>300-Year Ancient Coral Colony</h3>
+            <span class="v-tag coral-tag">Habitat Builder</span>
+          </div>
+          <button type="button" class="btn-listen-voice" data-sound="coral" title="Listen to Coral Bio-Acoustics">🔊 Listen</button>
+        </div>
+        <p class="v-quote">"I built this reef skeleton for 300 years. Plastic waste and rising ocean temperatures are bleaching my tissue white in just 30 days."</p>
+        <div class="v-stat">⚠️ Threat Index: <strong>Extreme (Heat & Acidification)</strong></div>
+      </div>
+
+      <!-- Sea Turtle Card -->
+      <div class="voice-card reveal" data-category="turtle">
+        <div class="voice-card-header">
+          <span class="v-icon">🐢</span>
+          <div>
+            <h3>Loggerhead Sea Turtle</h3>
+            <span class="v-tag turtle-tag">Ocean Navigator</span>
+          </div>
+          <button type="button" class="btn-listen-voice" data-sound="turtle" title="Listen to Turtle Acoustic Signals">🔊 Listen</button>
+        </div>
+        <p class="v-quote">"I ate floating plastic bags mistaking them for jellyfish. Microplastics choke our digestive tracks and pollute our nesting beaches."</p>
+        <div class="v-stat">⚠️ Threat Index: <strong>High (Plastic Ingestion & Net Entanglement)</strong></div>
+      </div>
+
+      <!-- Blue Whale Card -->
+      <div class="voice-card reveal" data-category="mammal">
+        <div class="voice-card-header">
+          <span class="v-icon">🐋</span>
+          <div>
+            <h3>Blue Whale</h3>
+            <span class="v-tag mammal-tag">Ocean Giant</span>
+          </div>
+          <button type="button" class="btn-listen-voice" data-sound="whale" title="Listen to Whale Song Frequency">🔊 Listen</button>
+        </div>
+        <p class="v-quote">"My low-frequency songs used to travel thousands of miles across calm seas. Heavy cargo ship noise pollution now drowns out our mating calls."</p>
+        <div class="v-stat">⚠️ Threat Index: <strong>Severe (Ship Strikes & Acoustic Noise)</strong></div>
+      </div>
+
+      <!-- Reef Shark Card -->
+      <div class="voice-card reveal" data-category="shark">
+        <div class="voice-card-header">
+          <span class="v-icon">🦈</span>
+          <div>
+            <h3>Apex Reef Shark</h3>
+            <span class="v-tag shark-tag">Ecosystem Balance</span>
+          </div>
+          <button type="button" class="btn-listen-voice" data-sound="shark" title="Listen to Shark Telemetry Signals">🔊 Listen</button>
+        </div>
+        <p class="v-quote">"Apex predators like me keep reef fish populations healthy. Overfishing and finning remove us, causing the entire food web to collapse."</p>
+        <div class="v-stat">⚠️ Threat Index: <strong>High (Overfishing & Bycatch)</strong></div>
+      </div>
+
+      <!-- Reef Fish Card -->
+      <div class="voice-card reveal" data-category="fish">
+        <div class="voice-card-header">
+          <span class="v-icon">🐠</span>
+          <div>
+            <h3>Parrotfish & Reef Dwellers</h3>
+            <span class="v-tag fish-tag">Reef Cleaners</span>
+          </div>
+          <button type="button" class="btn-listen-voice" data-sound="fish" title="Listen to Reef Chatter">🔊 Listen</button>
+        </div>
+        <p class="v-quote">"We graze on smothering algae to keep corals clean and healthy. When the reef structure dies, our food, shelter, and nurseries disappear."</p>
+        <div class="v-stat">⚠️ Threat Index: <strong>Critical (Habitat Loss)</strong></div>
+      </div>
+
+      <!-- Living Ocean Waters Card -->
+      <div class="voice-card reveal" data-category="coral">
+        <div class="voice-card-header">
+          <span class="v-icon">🌊</span>
+          <div>
+            <h3>Living Ocean Currents</h3>
+            <span class="v-tag ocean-tag">Life Support</span>
+          </div>
+          <button type="button" class="btn-listen-voice" data-sound="ocean" title="Listen to Ocean Waves">🔊 Listen</button>
+        </div>
+        <p class="v-quote">"I generate over 50% of the planet's oxygen and regulate Earth's climate. Protecting marine ecosystems is protecting human survival."</p>
+        <div class="v-stat">💚 Action Status: <strong>Restoration Active</strong></div>
+      </div>
+    </div>
+
+    <div class="voice-final-call reveal">
+      <p class="final-quote">"Their survival is in our hands. Scroll on to take action."</p>
+    </div>
+  </section>
+
   <div class="wave-divider">
     <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
       <path d="M0,50 C360,100 1080,0 1440,50 L1440,100 L0,100 Z" fill="#012a4a"></path>
     </svg>
   </div>
 
- 
-  <!-- ABOUT SECTION -->
-  <section id="about" class="about">
-  <h2>Why It Matters</h2>
-
-  <div class="about-grid">
-    <div class="about-text">
-      <p>Coral reefs cover less than 1% of the ocean floor, yet they support nearly 25% of all marine species — from tiny reef fish to sea turtles and sharks. They are often called the "rainforests of the sea" because of how much life depends on them.</p>
-      <p>But today, more than half of the world's coral reefs have already died or been severely damaged. Rising ocean temperatures cause coral bleaching, plastic pollution smothers reef systems, and overfishing disrupts the delicate balance that keeps these ecosystems alive.</p>
-      <p>The damage isn't limited to reefs alone — when coral dies, the fish that depend on it disappear too, followed by the larger species that feed on those fish. It's a chain reaction that eventually reaches human communities who rely on oceans for food, income, and coastal protection.</p>
-      <p><strong>REEF exists to break that chain.</strong> We connect everyday people directly to real conservation efforts — through volunteering, funding, and awareness — turning passive concern into active protection.</p>
+  <!-- ========================================== -->
+  <!-- 6. SCROLL-LED STORY: BLEACHING TO RECOVERY -->
+  <!-- ========================================== -->
+  <section id="story" class="story-section">
+    <div class="section-header">
+      <h2>From Bleaching to Recovery</h2>
+      <p>Understanding the threat and the science of active restoration</p>
     </div>
 
-    <div class="about-visual">
-      <div class="floating-icon icon-1">🐠</div>
-      <div class="floating-icon icon-2">🪸</div>
-      <div class="floating-icon icon-3">🐢</div>
-      <div class="floating-icon icon-4">🐡</div>
-      <div class="floating-icon icon-5">🌊</div>
-    </div>
-  </div>
-
-  <div class="stats-container">
-    <!-- your 4 stat cards, unchanged -->
-  </div>
-
-  <div class="mission-grid">
-    <!-- your 3 mission cards, unchanged -->
-  </div>
-</section>
-
-    <div class="stats-container">
-
-  <div class="stat-card reveal">
-    <div class="stat-icon">🪸</div>
-    <div class="stat-number" data-target="50" data-suffix="%">0%</div>
-    <div class="stat-label">of coral reefs already lost worldwide</div>
-  </div>
-
-  <div class="stat-card reveal">
-    <div class="stat-icon">🐠</div>
-    <div class="stat-number" data-target="25" data-suffix="%">0%</div>
-    <div class="stat-label">of marine species depend on reefs</div>
-  </div>
-
-  <div class="stat-card reveal">
-    <div class="stat-icon">🌊</div>
-    <div class="stat-number" data-target="1" data-suffix="M+">0M+</div>
-    <div class="stat-label">tons of plastic enter oceans yearly</div>
-  </div>
-
-  <div class="stat-card reveal">
-    <div class="stat-icon">⏳</div>
-    <div class="stat-number" data-target="2050" data-suffix="">0</div>
-    <div class="stat-label">year reefs could disappear if trends continue</div>
-  </div>
-
-</div>
-
-    <div class="mission-grid">
-      <div class="mission-item">
-        <h3>🎯 Our Mission</h3>
-        <p>Protect coral reefs and marine ecosystems through community action, education, and direct conservation support.</p>
+    <div class="story-container">
+      <!-- Interactive Before/After Slider -->
+      <div class="story-slider-block">
+        <div class="comparison-container" id="comparisonContainer">
+          <img src="healthy-reef.jpg" class="img-after" alt="Restored Healthy Coral Reef">
+          <div class="img-before-wrapper" id="imgBeforeWrapper">
+            <img src="damaged-reef.jpg" class="img-before" alt="Bleached Damaged Coral Reef">
+          </div>
+          <div class="slider-handle" id="sliderHandle">
+            <div class="slider-line"></div>
+            <div class="slider-circle">⟷</div>
+          </div>
+        </div>
+        <div class="slider-labels">
+          <span class="label-bleached">◀ Bleached / Damaged Reef</span>
+          <span class="label-restored">Restored Living Reef ▶</span>
+        </div>
       </div>
-      <div class="mission-item">
-        <h3>👁️ Our Vision</h3>
-        <p>A future where thriving coral reefs support both marine life and coastal communities for generations to come.</p>
-      </div>
-      <div class="mission-item">
-        <h3>🤝 How We Work</h3>
-        <p>By connecting volunteers, donors, and scientists to real reef locations that need protection right now.</p>
+
+      <!-- Vertical Timeline: REEF Restoration Method -->
+      <div class="timeline-block">
+        <h3>Our 4-Step Action Path</h3>
+        <div class="timeline">
+          <div class="timeline-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Monitor</h4>
+              <p>Deploy AI sonar arrays & diver surveys to detect thermal stress and early bleaching signs.</p>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Restore</h4>
+              <p>Cultivate heat-resilient micro-fragments in offshore ocean nurseries until ready for outplanting.</p>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Protect</h4>
+              <p>Secure marine protected zones and eliminate plastic pollution alongside local communities.</p>
+            </div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Share Data</h4>
+              <p>Publish open-access research to empower global conservation teams worldwide.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ========================================== -->
+  <!-- 7. SUPPORT MECHANISM: "ADOPT A CORAL FRAGMENT" -->
+  <!-- ========================================== -->
+  <section id="adopt" class="adopt-section">
+    <div class="section-header">
+      <h2>Adopt a Coral Fragment</h2>
+      <p>Directly fund a specific coral species and watch it grow into a thriving reef colony</p>
+    </div>
 
-  <!-- BEFORE AFTER SLIDER -->
-   
+    <div class="adopt-wrapper">
+      <!-- Coral Species Selector Tabs -->
+      <div class="coral-selector">
+        <div class="coral-option active" data-species="staghorn" data-name="Staghorn Coral" data-growth="Fast (10-20cm/yr)" data-desc="Branching coral that provides critical shelter for juvenile reef fish.">
+          <span class="coral-icon">🪸</span>
+          <h4>Staghorn Coral</h4>
+          <span class="coral-tag">Fast Growing</span>
+        </div>
 
-  <section class="slider-section">
-    <h2>See the Difference</h2>
-    <p>Drag the slider to see how coral reefs change</p>
+        <div class="coral-option" data-species="brain" data-name="Brain Coral" data-growth="Steady (1-2cm/yr)" data-desc="Resilient dome-shaped structure that withstands high wave energy and storm surges.">
+          <span class="coral-icon">🧠</span>
+          <h4>Brain Coral</h4>
+          <span class="coral-tag">High Resilience</span>
+        </div>
 
-    <div class="comparison-container" id="comparisonContainer">
-      <img src="healthy-reef.jpg" class="img-after">
-      <div class="img-before-wrapper" id="imgBeforeWrapper">
-        <img src="damaged-reef.jpg" class="img-before">
+        <div class="coral-option" data-species="elkhorn" data-name="Elkhorn Coral" data-growth="Rapid (5-10cm/yr)" data-desc="Key structural architect of shallow Caribbean and Pacific barrier reefs.">
+          <span class="coral-icon">🌿</span>
+          <h4>Elkhorn Coral</h4>
+          <span class="coral-tag">Reef Architect</span>
+        </div>
       </div>
-      <div class="slider-handle" id="sliderHandle">
-        <div class="slider-line"></div>
-        <div class="slider-circle">⟷</div>
+
+      <!-- Adopt Detail Card & Growth Tracker -->
+      <div class="adopt-detail-card">
+        <div class="adopt-info">
+          <h3 id="selectedCoralTitle">Staghorn Coral Fragment</h3>
+          <p id="selectedCoralDesc" class="adopt-desc">Branching coral that provides critical shelter for juvenile reef fish.</p>
+          <div class="growth-meta">
+            <span>🚀 Growth Speed: <strong id="selectedCoralGrowth">Fast (10-20cm/yr)</strong></span>
+          </div>
+
+          <!-- Growth Stage Visual Line -->
+          <div class="growth-tracker">
+            <div class="stage-label">Fragment Progress Stage:</div>
+            <div class="progress-bar-track">
+              <div class="progress-fill" id="adoptProgressFill" style="width: 25%;"></div>
+            </div>
+            <div class="stage-nodes">
+              <span class="node active">Micro-Fragment</span>
+              <span class="node">Nursery Tree</span>
+              <span class="node">Outplanted</span>
+              <span class="node">Thriving Colony</span>
+            </div>
+          </div>
+
+          <div class="adopt-action-row">
+            <button type="button" class="btn btn-primary btn-adopt" id="btnAdoptNow">Adopt Fragment ($25)</button>
+            <span class="adopt-note">Includes personalized digital certificate & GPS coordinates</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-   <!-- PROMISE WALL -->
+  <!-- ========================================== -->
+  <!-- 8. VOLUNTEER EXPERIENCE ("NEXT REEF DIVE") -->
+  <!-- ========================================== -->
+  <section id="volunteer" class="volunteer-section">
+    <div class="section-header">
+      <h2>Volunteer Experience</h2>
+      <p>Join our scientific divers and shoreline teams on active conservation missions</p>
+    </div>
+
+    <!-- Featured Event Card: "Next Reef Dive" -->
+    <div class="featured-dive-card">
+      <div class="dive-badge">FEATURED EVENT</div>
+      <div class="dive-content">
+        <div class="dive-info">
+          <h3>🤿 Next Reef Dive: Key Largo Sanctuary</h3>
+          <div class="dive-details">
+            <span>📅 <strong>Date:</strong> August 15, 2026</span>
+            <span>📍 <strong>Location:</strong> Key Largo Marine Nursery</span>
+            <span>🏷️ <strong>Skill Level:</strong> <span class="badge-skill">Open Water Certified</span></span>
+            <span>⚡ <strong>Availability:</strong> <span class="badge-spots" id="diveSpotsCount">4 Spots Left</span></span>
+          </div>
+          <p>Join our restoration team outplanting 100+ micro-fragments onto degraded barrier reef structure.</p>
+        </div>
+        <button type="button" class="btn btn-primary" id="btnReserveDive">Reserve a Place</button>
+      </div>
+    </div>
+
+    <!-- Additional Activity Cards -->
+    <div class="activity-grid">
+      <div class="activity-card">
+        <div class="act-icon">🏖️</div>
+        <h3>Shoreline Clean-up</h3>
+        <p>Remove marine debris and micro-plastics from vital coastal nesting beaches before tide changes.</p>
+        <button type="button" class="btn-activity-join">Join Clean-up</button>
+      </div>
+
+      <div class="activity-card">
+        <div class="act-icon">🪸</div>
+        <h3>Coral Nursery Support</h3>
+        <p>Assist marine biologists in cleaning underwater nursery trees and measuring growth rates.</p>
+        <button type="button" class="btn-activity-join">Support Nursery</button>
+      </div>
+
+      <div class="activity-card">
+        <div class="act-icon">🗺️</div>
+        <h3>Citizen Reef Mapping</h3>
+        <p>Log underwater photo observations using our mobile app to track species biodiversity.</p>
+        <button type="button" class="btn-activity-join">Start Mapping</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 9. EDUCATION: "MEET THE REEF" SPECIES STRIP -->
+  <!-- ========================================== -->
+  <section id="species" class="species-section">
+    <div class="section-header">
+      <h2>Meet the Reef Ecosystem</h2>
+      <p>Discover how every species supports the living pulse of our oceans</p>
+    </div>
+
+    <div class="species-strip-wrapper">
+      <div class="species-strip">
+        <div class="species-card">
+          <div class="species-icon">🪸</div>
+          <h3>Coral Polyps</h3>
+          <span class="species-role">The Architects</span>
+          <p>Tiny animals that secrete calcium carbonate skeletons, creating the structural foundation for 25% of ocean life.</p>
+        </div>
+
+        <div class="species-card">
+          <div class="species-icon">🐢</div>
+          <h3>Sea Turtles</h3>
+          <span class="species-role">The Gardeners</span>
+          <p>Grazers that maintain healthy seagrass beds and trim sponges to give corals room to grow.</p>
+        </div>
+
+        <div class="species-card">
+          <div class="species-icon">🐠</div>
+          <h3>Reef Fish</h3>
+          <span class="species-role">The Cleaners</span>
+          <p>Herbivorous fish like parrotfish eat smothering algae off coral surfaces, keeping reefs clean.</p>
+        </div>
+
+        <div class="species-card">
+          <div class="species-icon">🌿</div>
+          <h3>Mangroves</h3>
+          <span class="species-role">The Nursery</span>
+          <p>Coastal root systems filter land runoff and shelter juvenile marine life before they swim to outer reefs.</p>
+        </div>
+
+        <div class="species-card">
+          <div class="species-icon">🔬</div>
+          <h3>Plankton</h3>
+          <span class="species-role">The Oxygen Generator</span>
+          <p>Microscopic organisms generating over 50% of Earth's oxygen and feeding the marine food web.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- 10. PROMISE WALL -->
+  <!-- ========================================== -->
   <section id="promise" class="promise-section">
-    <h2>Join the Promise Wall</h2>
-    <p>Share one small action you'll take to protect our oceans</p>
+    <div class="section-header">
+      <h2>Join the Promise Wall</h2>
+      <p>Share one small action you'll take to protect our oceans</p>
+    </div>
 
     <button type="button" id="promiseInfoBtn" class="info-btn">💡 What kind of promises can I make?</button>
 
@@ -228,102 +619,77 @@
   </section>
 
   <!-- PROMISE INFO MODAL -->
-<div class="modal-overlay" id="promiseModalOverlay">
-  <div class="modal-box">
-    <button class="modal-close" id="promiseModalClose">✕</button>
-    <h3>What kind of promises can I make?</h3>
-    <p class="modal-subtitle">Every promise counts — big or small. Here are a few types of promises and what they actually help with:</p>
+  <div class="modal-overlay" id="promiseModalOverlay">
+    <div class="modal-box">
+      <button class="modal-close" id="promiseModalClose">✕</button>
+      <h3>What kind of promises can I make?</h3>
+      <p class="modal-subtitle">Every promise counts — big or small. Here are a few types of promises and what they actually help with:</p>
 
-    <div class="promise-type">
-      <span class="promise-type-icon">🥤</span>
-      <div>
-        <h4>Reduce Plastic Use</h4>
-        <p>e.g. "I will stop using single-use plastic." — Less plastic waste means fewer bottles, bags, and straws ending up in the ocean where turtles and fish mistake them for food.</p>
+      <div class="promise-type">
+        <span class="promise-type-icon">🥤</span>
+        <div>
+          <h4>Reduce Plastic Use</h4>
+          <p>e.g. "I will stop using single-use plastic." — Less plastic waste means fewer bottles and straws harming turtles and fish.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="promise-type">
-      <span class="promise-type-icon">🏖️</span>
-      <div>
-        <h4>Cleanup Action</h4>
-        <p>e.g. "I will pick up litter at the beach." — Direct cleanup keeps trash from reaching the water and breaking down into microplastics that harm coral and marine life.</p>
+      <div class="promise-type">
+        <span class="promise-type-icon">🏖️</span>
+        <div>
+          <h4>Cleanup Action</h4>
+          <p>e.g. "I will pick up litter at the beach." — Direct cleanup keeps trash from breaking down into microplastics.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="promise-type">
-      <span class="promise-type-icon">💧</span>
-      <div>
-        <h4>Water & Energy Saving</h4>
-        <p>e.g. "I will save water and electricity at home." — Lower energy use reduces the emissions that warm the oceans and cause coral bleaching.</p>
+      <div class="promise-type">
+        <span class="promise-type-icon">💧</span>
+        <div>
+          <h4>Water & Energy Saving</h4>
+          <p>e.g. "I will save water and electricity." — Reduces emissions that warm the ocean and cause coral bleaching.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="promise-type">
-      <span class="promise-type-icon">🛍️</span>
-      <div>
-        <h4>Responsible Choices</h4>
-        <p>e.g. "I will choose reef-safe sunscreen." — Everyday product choices can stop harmful chemicals from washing into reef ecosystems.</p>
+      <div class="promise-type">
+        <span class="promise-type-icon">🛍️</span>
+        <div>
+          <h4>Responsible Choices</h4>
+          <p>e.g. "I will choose reef-safe sunscreen." — Stops harmful chemicals from washing into fragile ecosystems.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="promise-type">
-      <span class="promise-type-icon">📢</span>
-      <div>
-        <h4>Spread Awareness</h4>
-        <p>e.g. "I will tell my friends why reefs matter." — Awareness turns one promise into many, building a bigger movement to protect marine life.</p>
-      </div>
+      <p class="modal-footer-note">Type your own promise in any of these categories — every action adds up. 🌊</p>
     </div>
-
-    <p class="modal-footer-note">Type your own promise in any of these categories — or make up your own. Every action, however small, adds up. 🌊</p>
   </div>
-</div>
 
-  <!-- VOLUNTEER & SUPPORT SECTION -->
-  <section id="volunteer" class="forms-section">
-    <h2>Get Involved</h2>
-    <p>Choose how you'd like to help protect our oceans</p>
+  <!-- ========================================== -->
+  <!-- 11. CLOSING & FIELD NOTES NEWSLETTER -->
+  <!-- ========================================== -->
+  <section class="closing-section">
+    <div class="closing-box">
+      <h2>A reef can recover. <br><span class="highlight">But it can't do it alone.</span></h2>
+      <p>Receive live field notes, dive reports, and restoration updates directly from marine scientists.</p>
 
-    <div class="forms-container">
+      <form class="newsletter-form" id="newsletterForm" onsubmit="return false;">
+        <input type="email" placeholder="Enter your email address" id="newsletterEmail" required>
+        <button type="submit" class="btn btn-primary" id="btnNewsletter">Receive Field Notes 📨</button>
+      </form>
 
-      <div class="form-card">
-        <h3>🤝 Volunteer With Us</h3>
-        <input type="text" placeholder="Your Name">
-        <input type="email" placeholder="Your Email">
-        <select>
-          <option value="">How would you like to help?</option>
-          <option value="beach-cleanup">Beach Cleanup</option>
-          <option value="awareness">Spread Awareness</option>
-          <option value="data-collection">Data Collection</option>
-        </select>
-        <button type="button">Join as Volunteer</button>
+      <div class="closing-actions">
+        <a href="#volunteer" class="btn btn-secondary">Become a Volunteer</a>
+        <a href="#adopt" class="btn btn-primary">Support Reef Restoration</a>
       </div>
-
-      <div class="form-card" id="support">
-        <h3>💙 Support Marine Life</h3>
-        <input type="text" placeholder="Your Name">
-        <input type="email" placeholder="Your Email">
-        <select>
-          <option value="">Choose support type</option>
-          <option value="donate">One-Time Donation</option>
-          <option value="monthly">Monthly Support</option>
-          <option value="spread-word">Spread the Word</option>
-        </select>
-        <button type="button">Support Now</button>
-      </div>
-
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>🌊 REEF — Protecting Coral Reefs & Marine Life</p>
-    <p class="footer-small">Made with care for our oceans</p>
+    <p>🌊 REEF — Protecting Coral Reefs & Marine Ecosystems</p>
+    <p class="footer-small">Made with care for our oceans • Every action keeps the reef alive.</p>
   </footer>
-  
+
+  <!-- Toast Notification Container for Micro-Interactions -->
+  <div class="toast-container" id="toastContainer"></div>
+
   <script src="script.js"></script>
-
- 
-
-  
-  </body>
-  </html>
+</body>
+</html>
